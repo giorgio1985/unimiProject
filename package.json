@@ -1,0 +1,19 @@
+{
+  "name": "mypackage",
+  "version": "1.0.0",
+  "description": "main package",
+  "main": "applicazione.js",
+  "scripts": {
+    "test": "foo"
+  },
+  "keywords": [
+    "mykey"
+  ],
+  "author": "giorgio1985",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.0-beta4"
+  }
+}
