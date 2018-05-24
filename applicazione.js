@@ -30,7 +30,7 @@ var words=nome+email+text+timeStamp;
 
 var md5=crypto.toCrypt(words);
 mongoInsert(nome,email,text,timeStamp,md5);
-mongoShow();
+mongoShow(email);
 
 var wordAppend='Hello '+ nome +'| This is your last message: '+text+'| At '+timeStamp;
 fs.readFile(__dirname  +'/'+'applicazione.html', 'utf8', function(err, data){
@@ -53,11 +53,11 @@ db.close();
 });
 }
 
-function mongoShow(){
+function mongoShow(em){
 	mongo.connect(url, function(err, db){
 		if (err) throw err;
 var showDb=db.db('mongoDatabase');
-showDb.collection('mongoCollection').find({}).toArray(function(err, data){
+showDb.collection('mongoCollection').find({email: em}).toArray(function(err, data){
 	if (err) throw err;
 	console.log('you have insert this informations: ');
 	console.log(data);
