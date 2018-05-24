@@ -1,5 +1,5 @@
-module.exports.timeStamp=function(){  
-var timer = new Date();
-var time=timer.toUTCString();
-return time;
+module.exports.timer=function(){
+	var data=new Date();
+	var d=data.toUTCString();
+	return 'the real time stamp is: '+d;
 }

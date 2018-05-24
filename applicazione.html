@@ -1,22 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
-<!-- giorgio1985 -->
-    <link rel="stylesheet" type="text/css" href="index.css">
+	<title>Applicazione</title>
+	<script type=text/javascript src="history.js"></script>
 </head>
 <body>
-  <h5>Index page!</h5>
-<div class="login-page">
-  <div class="form">
-    <form name="submit" method="POST" action="/inside">
-      Name: <input type="text" placeholder="name" name="nome" /><br>
-      Password: <input type="password" placeholder="password" name="password" /><br>
-      Email: <input type="text" placeholder="email address" name="email" /><br>
-      <input type="submit" value="Send" name="submit"/>
-      
-    </form>
-  </div>
-</div>
+<h5>Applicazione</h5>
+<p>Show Your lastest commit:</p>
+<input type="submit" id="commit" name="history" value="Last Transation" onclick="showHistory()"></input>
+<div id="history"></div>
 </body>
 </html>
