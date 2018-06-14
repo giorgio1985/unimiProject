@@ -2,7 +2,7 @@
   "name": "mypackage",
   "version": "1.0.0",
   "description": "main package",
-  "main": "applicazione.js",
+  "main": "index.js",
   "scripts": {
     "test": "foo"
   },
