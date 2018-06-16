@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>welcome page 2 ejs file</title>
+</head>
+<body>
+<h4>welcome page 2 ejs</h4>
+<hr>
+<div id="conteiner" style="background-color: lightblue">
+<table style="border: 1px solid black; margin-left: 300px; background: white" width="500">
+	<thead>Summary</thead>
+	<tr>
+		<td>
+	<p><%=nom %></p>
+    <p><%=cog %></p>
+    <p><%=ann %></p>
+    <p><%=cit %></p>
+    <p><%=time %></p>
+	   </td>
+</tr>
+
+</table>
+<hr>
+<h5>Your lastest coin!</h5>
+<table style="border: 1px solid black; margin-left: 300px; background: white" width="750">
+
+	<tr>
+	<p><%=nom %></p>
+	<p><%=cog %></p>
+		<td><p><% for(var i=0; i<bit.length; i++){ %>
+<%=bit[i] %>
+
+<% if(i%259==0) { %><hr><% } %>
+
+<% } %></p></td>
+
+</tr>
+</table>
+
+</div>
+</body>
+</html>

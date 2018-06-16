@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Index file</title>
+	<title>index page</title>
 </head>
 <body>
-<h4>Index file</h4>
-<br>
-<hr>
-<form name="form" action="/private" method="POST">
-	Name: <input type="text" name="nome"/><br>
-	Surename: <input type="text" name="cognome"/><br>
-	Password: <input type="password" name="password"/><br>
-	Ege: <input type="number" name="eta" min="1" max="150"/><br>
-	<input type="submit" name="submit" value="send"/><hr>
+<h4>index page!</h4>
+<form method="post" action="/mese"> 
+	name: <input type="text" name="nome" placeholder="name" />
+	cognome: <input type="text" name="cognome" placeholder="surename" />
+	anni: <input type="number" name="anni" min="0" max="150" />
+	citta: <input type="text" name="citta" placeholder="citta" />
+	<input type="submit" name="submit" value="send"/>
 </form>
 </body>
 </html>
