@@ -1,38 +1,23 @@
-const SHA256 = require('crypto-js');
+var crypto=require('crypto-js');
 
 class Block {
-  constructor(index, previousBlockHeader = '', transactions, timestamp) {
-    this.index               = index;
-    this.header              = this.calculateHash();
-    this.previousBlockHeader = previousBlockHeader;
-    this.transactions        = transactions;
-    this.timestamp           = timestamp;
-  }
+	constructor(index, previousBlockHeader='', transaction, timeStamp){
+		this.index=index;
+		this.previousBlockHeader=previousBlockHeader;
+		this.transaction=transaction;
+		this.timeStamp=timeStamp;
+		this.hash=this.calculateHash();
 
-  calculateHash() {
-    return SHA256.MD5(this.index  +
-                  this.previousBlockHeader +
-                  JSON.stringify(this.transactions)).toString() +
-                  this.timestamp;
-  }
+	}
+
+	calculateHash(){
+		var hashed=this.index + this.previousBlockHeader + this.transaction + this.timeStamp;
+		var sha256=crypto.SHA256(hashed).toString();
+		return sha256;
+	}
 }
 
-class Blockchain {
-  constructor() {
-    this.chain = [this.createGenesisBlock()];
-  }
-
-
-getLastBlock() {
-    return this.chain[this.chain.length - 1];
-  }
-
-addBlock(newBlock) {
-    newBlock.previousBlockHeader = this.getLastBlock().header;
-    newBlock.header              = newBlock.calculateHash();
-    this.chain.push(newBlock);
-  }
-}
-
+//var block=new Block(0, 'zero',0 ,Date());
+//console.log(block);
 
 module.exports = Block;
