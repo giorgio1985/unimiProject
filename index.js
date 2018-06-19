@@ -3,6 +3,9 @@ var app=express();
 var bodyP=require('body-parser');
 var Block=require('./block.js');
 var Blockchain=require('./blockchain.js');
+var Customs=require('./mongoose.js');
+//mongoose.connect('mongodb://m*:i*@ds245680.mlab.com:45680/database001');
+
 app.set('view engine', 'ejs');
 app.use(bodyP.urlencoded({extended: true}));
 app.use(bodyP.json());
@@ -10,20 +13,34 @@ app.use(bodyP.json());
 app.get('/', function(req, res){
 	res.sendFile(__dirname +'/'+ 'index.html');
 	console.log('file connected!');
+}).listen(8800);
 
-
-/*app.post('/mese', function(req, res){
+app.post('/mese', function(req, res){
 	var nome=req.body.nome;
 	var cognome=req.body.cognome;
 	var anni=req.body.anni;
 	var citta=req.body.citta;
-	var timestamp=new Date();
+	var timestamp=Date();
 	//var block=[];
 	// block[0]=new Block(0, 'Genesis Block', 5000, timestamp);
     // var JBlock=[];
     //JBlock=JSON.stringify(block);
-   */
-    var block=new Block();
+   
+   var customs=new Customs({
+    nome: nome,
+    cognome:cognome,
+    anni:anni,
+    citta:citta,
+    data:timestamp  
+});
+   customs.save(function(err){
+   if (err) throw err;
+   console.log('informations are saved ind db!');
+   res.end(JSON.stringify(customs));
+   });
+
+});
+    /*var block=new Block();
     var blockchain=new Blockchain();
 
     var genesis=blockchain.createGenesisBlock();
@@ -41,9 +58,8 @@ app.get('/', function(req, res){
 	//res.render('welcome', { nom: nome, cog: cognome, ann: anni, cit: citta, time: timestamp, bit: JBlock });
 	res.send(Jgenesis+'  <br> '+JlastBlock);
 
-//});
 
-}).listen(8800);
+
 console.log('write your url name file.');
-
+*/
 
