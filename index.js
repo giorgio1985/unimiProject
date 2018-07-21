@@ -38,7 +38,7 @@ app.post('/mese', function(req, res){
    console.log('informations are saved ind db!');
    res.end(JSON.stringify(customs));
    });
-
+// use ajax for output information to index file?...  working in progress...
 });
     /*var block=new Block();
     var blockchain=new Blockchain();
