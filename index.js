@@ -5,7 +5,7 @@ var Block=require('./block.js');
 var Blockchain=require('./blockchain.js');
 var Customs=require('./mongoose.js');
 //mongoose.connect('mongodb://m*:i*@ds245680.mlab.com:45680/database001');
-
+//var mongoClient=require('mongodb').mongoClient;
 app.set('view engine', 'ejs');
 app.use(bodyP.urlencoded({extended: true}));
 app.use(bodyP.json());
@@ -40,6 +40,25 @@ app.post('/mese', function(req, res){
    });
 // use ajax for output information to index file?...  working in progress...
 });
+
+
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://mongo1985:internazionale1985@ds245680.mlab.com:45680/database001";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("database001");
+  dbo.collection("customs").find({}).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    db.close();
+  });
+}); 
+
+
+
+
+
     /*var block=new Block();
     var blockchain=new Blockchain();
 
