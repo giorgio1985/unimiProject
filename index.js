@@ -15,11 +15,9 @@ app.get('/', function(req, res){
 	console.log('file connected!');
 }).listen(8800);
 
-app.post('/mese', function(req, res){
-	var nome=req.body.nome;
-	var cognome=req.body.cognome;
-	var anni=req.body.anni;
-	var citta=req.body.citta;
+app.post('/login', function(req, res){
+	var user=req.body.user;
+	var email=req.body.email;
 	var timestamp=Date();
 	//var block=[];
 	// block[0]=new Block(0, 'Genesis Block', 5000, timestamp);
@@ -27,33 +25,42 @@ app.post('/mese', function(req, res){
     //JBlock=JSON.stringify(block);
    
    var customs=new Customs({
-    nome: nome,
-    cognome:cognome,
-    anni:anni,
-    citta:citta,
+    user: user,
+    email:email,
     data:timestamp  
 });
    customs.save(function(err){
    if (err) throw err;
    console.log('informations are saved ind db!');
+  
    res.end(JSON.stringify(customs));
    });
-// use ajax for output information to index file?...  working in progress...
-});
 
-
-var MongoClient = require('mongodb').MongoClient;
+   var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://mongo1985:internazionale1985@ds245680.mlab.com:45680/database001";
 
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("database001");
-  dbo.collection("customs").find({}).toArray(function(err, result) {
-    if (err) throw err;
+  query={user: req.body.user, email: req.body.email};
+  dbo.collection("customs").find(query).toArray(function(err, result) {
+    
+
+    if (err) {
+  app.get('/', function(req, res){
+  res.sendFile(__dirname +'/'+ 'index.html');
+  console.log('file connected!');
+}).listen(8800);
+
+ }
     console.log(result);
     db.close();
   });
 }); 
+// use ajax for output information to index file?...  working in progress...
+});
+
+
 
 
 

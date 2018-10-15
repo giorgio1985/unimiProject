@@ -26,5 +26,6 @@
   "bugs": {
     "url": "https://github.com/giorgio1985/unimiProject/issues"
   },
-  "homepage": "https://github.com/giorgio1985/unimiProject#readme"
+  "homepage": "https://github.com/giorgio1985/unimiProject#readme",
+  "devDependencies": {}
 }
