@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var myBlock = new Schema({
 	index: Number,
-	previus: String,
+	previous: String,
 	transaction: Number,
 	timeStamp: Date
 });

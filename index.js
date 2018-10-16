@@ -9,11 +9,17 @@ var Customs=require('./mongoose.js');
 app.set('view engine', 'ejs');
 app.use(bodyP.urlencoded({extended: true}));
 app.use(bodyP.json());
+//app.use(express.static(__dirname + '/myBlock.html'));
 
 app.get('/', function(req, res){
 	res.sendFile(__dirname +'/'+ 'index.html');
 	console.log('file connected!');
 }).listen(8800);
+
+  app.get('/Block', function(req, res){
+  res.sendFile(__dirname +'/'+ 'myBlock.html');
+  console.log('Block connected!');
+});
 
 app.post('/login', function(req, res){
 	var user=req.body.user;
@@ -31,10 +37,14 @@ app.post('/login', function(req, res){
 });
    customs.save(function(err){
    if (err) throw err;
-   console.log('informations are saved ind db!');
-  
    res.end(JSON.stringify(customs));
+      console.log('informations are saved ind db!');
    });
+  
+  
+
+   //res.end(JSON.stringify(customs));
+   
 
    var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://mongo1985:internazionale1985@ds245680.mlab.com:45680/database001";
@@ -44,21 +54,16 @@ MongoClient.connect(url, function(err, db) {
   var dbo = db.db("database001");
   query={user: req.body.user, email: req.body.email};
   dbo.collection("customs").find(query).toArray(function(err, result) {
-    
+  if (err) throw err;
 
-    if (err) {
-  app.get('/', function(req, res){
-  res.sendFile(__dirname +'/'+ 'index.html');
-  console.log('file connected!');
-}).listen(8800);
-
- }
     console.log(result);
     db.close();
   });
 }); 
 // use ajax for output information to index file?...  working in progress...
+res.redirect('/Block')
 });
+  
 
 
 
