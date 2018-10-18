@@ -13,21 +13,18 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-  </head>
+  <script src="./unimiProject/jquery.min.js"></script>
 
-
-
-
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+ <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
 <!------ Include the above in your HEAD tag ---------->
 </body>
-<h6>Blockchain</h6>
+
 <div class="container">
   <div class="row">
-    <form class="form-horizontal">
+    <form class="form-horizontal" method="post" action="/myBlocks">
 <fieldset>
 
 <!-- Form Name -->
@@ -35,35 +32,26 @@
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="name">name</label>  
-  <div class="col-md-4">
-  <input id="name" name="name" placeholder="Input name" class="form-control input-md" required="" type="text">
+  <label class="col-md-16 control-label" for="name">name</label>  
+  <div class="col-md-16">
+  <input id="name" name="nome" placeholder="Input name" class="form-control input-md" required="" type="text">
   <span class="help-block">Pleae type name</span>  
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="title">Title</label>  
-  <div class="col-md-4">
-  <input id="title" name="title" placeholder="Input title" class="form-control input-md" required="" type="text">
+  <label class="col-md-16 control-label" for="title">Title</label>  
+  <div class="col-md-16">
+  <input id="title" name="titolo" placeholder="Input title" class="form-control input-md" required="" type="text">
   <span class="help-block">Please type title</span>  
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="stock">Stock</label>  
-  <div class="col-md-4">
-  <input id="stock" name="stock" placeholder="Input stock" class="form-control input-md" required="" type="text">
-  <span class="help-block">Please input stock</span>  
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="price">Price</label>  
-  <div class="col-md-4">
+  <label class="col-md-16 control-label" for="price">Price</label>  
+  <div class="col-md-16">
   <input id="price" name="price" placeholder="Input proce" class="form-control input-md" required="" type="text">
   <span class="help-block">Input price</span>  
   </div>
@@ -71,23 +59,15 @@
 
 <!-- Textarea -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="detail">Active</label>
-  <div class="col-md-4">                     
-    <input name="checkboxes" id="checkboxes-0" value="1" type="checkbox">
-  </div>
-</div>
-
-<!-- Textarea -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="detail">Detail</label>
-  <div class="col-md-4">                     
-    <textarea class="form-control" id="detail" name="detail">default text</textarea>
+  <label class="col-md-16 control-label" for="detail">Detail</label>
+  <div class="col-md-16">                     
+    <textarea class="form-control" id="detail" name="detail"></textarea>
   </div>
 </div>
 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="detail">Single Button</label>
-  <div class="col-md-4">                     
+  <label class="col-md-16 control-label" for="detail">submit</label>
+  <div class="col-md-16">                     
     <button id="singlebutton" name="singlebutton" class="btn btn-primary">Button</button>
   </div>
 </div>

@@ -1,8 +1,6 @@
 var express=require('express');
 var app=express();
 var bodyP=require('body-parser');
-var Block=require('./block.js');
-var Blockchain=require('./blockchain.js');
 var Customs=require('./mongoose.js');
 //mongoose.connect('mongodb://m*:i*@ds245680.mlab.com:45680/database001');
 //var mongoClient=require('mongodb').mongoClient;
@@ -16,7 +14,7 @@ app.get('/', function(req, res){
 	console.log('file connected!');
 }).listen(8800);
 
-  app.get('/Block', function(req, res){
+  app.get('/Block-file', function(req, res){
   res.sendFile(__dirname +'/'+ 'myBlock.html');
   console.log('Block connected!');
 });
@@ -61,7 +59,7 @@ MongoClient.connect(url, function(err, db) {
   });
 }); 
 // use ajax for output information to index file?...  working in progress...
-res.redirect('/Block')
+res.redirect('/Block-file')
 });
   
 
