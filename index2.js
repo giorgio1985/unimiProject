@@ -2,10 +2,10 @@ var express=require('express');
 var app=express();
 var bodyP=require('body-parser');
 var Customs=require('./mongoose.js');
-
-var Block=require('./block.js');
-var Blockchain=require('./blockchain.js');
-var blockchains=require('./myBlock.js');
+app.use(express.static(__dirname + '/unimiProject'));
+//var Block=require('./block.js');
+//var Blockchain=require('./blockchain.js');
+var myBlocks=require('./myBlock.js');
 
 var cryptoJs=require('crypto-js');
 
@@ -13,7 +13,12 @@ app.set('view engine', 'ejs');
 app.use(bodyP.urlencoded({extended: true}));
 app.use(bodyP.json());
 
-app.post('/myBlocks', function(req, res){
+app.get('/myBlock', function(req, res){
+  res.sendFile(__dirname +'/'+ 'costructor.html');
+  console.log('block file html connected!');
+}).listen(8800);
+
+app.post('/blocker', function(req, res){
 	var name=req.body.nome;
 	var title=req.body.titolo;
 	var price=req.body.price;
@@ -22,8 +27,7 @@ app.post('/myBlocks', function(req, res){
 
 
     var string=name+title+price+detail+timestamp;
-	
-	var hash = cryptoJs.createHash('md5').update(string).digest('hex');
+  var hash = cryptoJs.SHA256(string).toString();
 console.log(hash);
 
 	var blockchains=new myBlocks({
@@ -31,12 +35,12 @@ console.log(hash);
     previous: hash,
     transaction: price,
     detail: detail,
-    data: timestamp  
+    data: Date()
 });
 
 blockchains.save(function(err){
    if (err) throw err;
-   res.end(JSON.stringify(blockchains));
+   //res.end(JSON.stringify(blockchains));
       console.log('your block are saved ind db!');
    });
 
@@ -54,5 +58,6 @@ MongoClient.connect(url, function(err, db) {
     db.close();
   });
 }); 
+res.redirect('/costructor.html');
 });
 
