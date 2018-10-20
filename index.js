@@ -1,5 +1,6 @@
 var express=require('express');
 var app=express();
+var fs = require('fs');
 var bodyP=require('body-parser');
 var Customs=require('./mongoose.js');
 var myBlocks=require('./myBlock.js');
@@ -82,7 +83,7 @@ app.post('/blocker', function(req, res){
 
     var string=name+title+price+detail+timestamp;
   var hash = cryptoJs.SHA256(string).toString();
-//console.log(hash);
+console.log(hash);
 
   var blockchains=new myBlocks({
     index: hash,
@@ -108,7 +109,12 @@ MongoClient.connect(url, function(err, db) {
   dbo.collection("blockchain").find(query).toArray(function(err, result) {
   if (err) throw err;
 
-    console.log(JSON.stringify(result));
+fs.writeFile('costructor.html', JSON.stringify(query), function (err) {
+  if (err) throw err;
+  console.log('Saved!');
+}); 
+    res.end(JSON.stringify(result));
+    console.log(result);
     db.close();
   });
 }); 
