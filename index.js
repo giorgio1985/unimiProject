@@ -6,12 +6,11 @@ var Customs=require('./mongoose.js');
 var myBlocks=require('./myBlock.js');
 var cryptoJs=require('crypto-js');
 
-//mongoose.connect('mongodb://m*:i*@ds245680.mlab.com:45680/database001');
-//var mongoClient=require('mongodb').mongoClient;
+
 app.set('view engine', 'ejs');
 app.use(bodyP.urlencoded({extended: true}));
 app.use(bodyP.json());
-//app.use(express.static(__dirname + '/myBlock.html'));
+
 
 app.get('/', function(req, res){
 	res.sendFile(__dirname +'/'+ 'index.html');
@@ -109,12 +108,14 @@ MongoClient.connect(url, function(err, db) {
   dbo.collection("blockchain").find(query).toArray(function(err, result) {
   if (err) throw err;
 
-fs.writeFile('costructor.html', JSON.stringify(query), function (err) {
+fs.appendFile('costructor.html', JSON.stringify(query), 'utf8' ,function (err) {
   if (err) throw err;
+  
   console.log('Saved!');
+
 }); 
     res.end(JSON.stringify(result));
-    console.log(result);
+    console.log(JSON.stringify(query));
     db.close();
   });
 }); 
