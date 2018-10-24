@@ -5,7 +5,7 @@ var bodyP=require('body-parser');
 var Customs=require('./mongoose.js');
 var myBlocks=require('./myBlock.js');
 var cryptoJs=require('crypto-js');
-
+//   https://enlight.nyc/projects/blockchain/
 
 app.set('view engine', 'ejs');
 app.use(bodyP.urlencoded({extended: true}));
@@ -83,23 +83,29 @@ app.post('/blocker', function(req, res){
   
   var hash = cryptoJs.SHA256(string).toString();
   console.log(hash);
+  var ggg;
 /*  ------------------------------------------------  */
-
+function back(){ 
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://mongo1985:internazionale1985@ds245680.mlab.com:45680/database001";
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("database001");
-  dbo.collection('blockchains').find({'id': 5}).toArray(function(err, data){
-    if (err) throw err;
-    console.log(data);
+  //dbo.collection('blockchains').find({'id': 5}).toArray(function(err, data){
+   // if (err) throw err;
+    //console.log(data);
+    var ggg = dbo.collection('blockchains').find({'id': 1}, {limit: 1}).sort({$natural: -1});
+      //return dbo.collection.find().sort({ $natural: -1 }).limit(1);
+      // dbo.collection('blockchains').find({}).hint( { $natural : -1 } ).limit(2).sort({'id': -1});
+      return ggg,
+  //console.log(ggg);
   });
-
-});
+}
+//});
 /* ------------------------------------------------- */
 var blockchains=new myBlocks({
     index: hash,
-    previous:'jiojojj',
+    previous:back(),
     transaction: price,
     detail: detail,
     data: Date()
@@ -119,7 +125,7 @@ var url = "mongodb://mongo1985:internazionale1985@ds245680.mlab.com:45680/databa
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("database001");
-  query={index: hash, previous: hash, transaction: req.body.price, detail: req.body.detail, data: Date()};
+  query={index: hash, previous: back() , transaction: req.body.price, detail: req.body.detail, data: Date()};
   dbo.collection("blockchain").find(query).toArray(function(err, result) {
   if (err) throw err;
   
