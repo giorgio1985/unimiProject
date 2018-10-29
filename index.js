@@ -97,7 +97,7 @@ MongoClient.connect(url, function(err, db) {
     var ggg = dbo.collection('blockchains').find({'id': 1}, {limit: 1}).sort({$natural: -1});
       //return dbo.collection.find().sort({ $natural: -1 }).limit(1);
       // dbo.collection('blockchains').find({}).hint( { $natural : -1 } ).limit(2).sort({'id': -1});
-      return ggg,
+      return ggg;
   //console.log(ggg);
   });
 }
