@@ -8,6 +8,7 @@ var cryptoJs=require('crypto-js');
 var firstBlock = require('./block.js');
 var chainer=require('./blockchain.js');
 //   https://enlight.nyc/projects/blockchain/
+//   https://developers.caffeina.com/chiccocoin-learn-what-is-a-blockchain-by-creating-one-in-nodejs-12929a89208b
 
 app.set('view engine', 'ejs');
 app.use(bodyP.urlencoded({extended: true}));
@@ -83,24 +84,30 @@ app.post('/blocker', function(req, res){
   var hash = cryptoJs.SHA256(string).toString();
   console.log(hash);
 
-  //var block=[];
+  //var Block=[];
   // block[0]=new Block(0, 'Genesis Block', 5000, timestamp);
     // var JBlock=[];
     //JBlock=JSON.stringify(block);
 
 
- var Block = new firstBlock(hash, hash, price, timestamp);
+ var Block = new firstBlock(hash, exHash, price, timestamp);
 var Blockchain = new chainer();
 Blockchain.createGenesisBlock(0, 'zero', 'my genesis block!!', Date());
 Blockchain.getLastBlock();
-Blockchain.addBlock(Block);
-
+var ccc = Blockchain.addBlock(Block);
+console.log('ccc = '+ccc+' <---- ccc');
+console.log('Blockchain ---> '+JSON.stringify(Blockchain)+ '<----- Blockchain');
+console.log('Block ---> '+JSON.stringify(Block)+' <-----Block');
+console.log('Last Block ---> '+JSON.stringify(Blockchain.getLastBlock(ccc))+' <--- last Block');
+console.log('Last hash -->'+JSON.stringify(Blockchain.getLastBlock(ccc).header)+'<--- last hash');
+var exHash = Blockchain.getLastBlock().header;
+//var exHash2 = previousBlockHeader;
 
 
 
 var blockchains=new myBlocks({
     index: hash,
-    previous:hash,
+    previous:exHash,
     transaction: price,
     detail: detail,
     data: Date()
@@ -122,7 +129,7 @@ var url = "mongodb://mongo1985:internazionale1985@ds245680.mlab.com:45680/databa
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("database001");
-  query={index: hash, previous: hash, transaction: req.body.price, detail: req.body.detail, data: Date()};
+  query={index: hash, previous: exHash, transaction: req.body.price, detail: req.body.detail, data: Date()};
   dbo.collection("blockchain").find(query).toArray(function(err, result) {
   if (err) throw err;
   
