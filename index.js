@@ -9,6 +9,7 @@ var firstBlock = require('./block.js');
 var chainer=require('./blockchain.js');
 //   https://enlight.nyc/projects/blockchain/
 //   https://developers.caffeina.com/chiccocoin-learn-what-is-a-blockchain-by-creating-one-in-nodejs-12929a89208b
+//   https://www.youtube.com/watch?v=VBu7lgSR9sc  
 
 app.set('view engine', 'ejs');
 app.use(bodyP.urlencoded({extended: true}));
@@ -95,7 +96,7 @@ var Blockchain = new chainer();
 Blockchain.createGenesisBlock(0, 'zero', 'my genesis block!!', Date());
 Blockchain.getLastBlock();
 var ccc = Blockchain.addBlock(Block);
-console.log('ccc = '+ccc+' <---- ccc');
+//console.log('ccc = '+ccc+' <---- ccc');
 console.log('Blockchain ---> '+JSON.stringify(Blockchain)+ '<----- Blockchain');
 console.log('Block ---> '+JSON.stringify(Block)+' <-----Block');
 console.log('Last Block ---> '+JSON.stringify(Blockchain.getLastBlock(ccc))+' <--- last Block');
