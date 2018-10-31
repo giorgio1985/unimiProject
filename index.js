@@ -85,10 +85,51 @@ app.post('/blocker', function(req, res){
   var hash = cryptoJs.SHA256(string).toString();
   console.log(hash);
 
-  //var Block=[];
-  // block[0]=new Block(0, 'Genesis Block', 5000, timestamp);
-    // var JBlock=[];
-    //JBlock=JSON.stringify(block);
+//   -------->  last block function 
+
+   var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://mongo1985:internazionale1985@ds245680.mlab.com:45680/database001";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("database001");
+  
+      dbo.collection("blockchains").findOne({}, {sort: {_id: -1}, limit: 1}, function(err, result) {
+
+  if (err) throw err;
+
+    console.log('Ultima funzione ...' + result.id);
+    var preId=result.id-1;
+    dbo.collection("blockchains").findOne({id: preId}, function(err, results){  
+if (err) throw err;
+console.log('penultima funzione ...' + (results.id) + '          penultimo hash '+  (results.index));
+var exHash = results.index;
+
+    var blockchains=new myBlocks({
+    index: hash,
+    previous:exHash,
+    transaction: price,
+    detail: detail,
+    data: Date()
+   
+  });
+
+
+blockchains.save(function(err){
+   if (err) throw err;
+   res.end(JSON.stringify(blockchains));
+      console.log('your block are saved in db!');
+   });  
+
+    db.close();
+  });
+}); 
+    });
+    //});
+// use ajax for output information to index file?...  working in progress...
+//res.redirect('/Block-file')
+
+
 
 
  var Block = new firstBlock(hash, exHash, price, timestamp);
@@ -106,20 +147,7 @@ var exHash = Blockchain.getLastBlock().header;
 
 
 
-var blockchains=new myBlocks({
-    index: hash,
-    previous:exHash,
-    transaction: price,
-    detail: detail,
-    data: Date()
-   
-  
-}); 
-blockchains.save(function(err){
-   if (err) throw err;
-   res.end(JSON.stringify(blockchains));
-      console.log('your block are saved in db!');
-   });  
+// -------->    
 
 
 
@@ -147,8 +175,6 @@ fs.appendFile('costructor.html', JSON.stringify(query), 'utf8' ,function (err) {
 }); 
 res.redirect('/myBlock');
 });
-
-
 
 
     /*var block=new Block();
