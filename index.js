@@ -2,7 +2,7 @@ var express=require('express');
 var app=express();
 var fs = require('fs');
 var bodyP=require('body-parser');
-var Customs=require('./mongoose.js');
+var Customs=require('./mongoose.js');             // <--- including js libreries ...
 var myBlocks=require('./myBlock.js');
 var cryptoJs=require('crypto-js');
 var firstBlock = require('./block.js');
@@ -20,27 +20,27 @@ app.use(bodyP.json());
 
 
 app.get('/', function(req, res){
-	res.sendFile(__dirname +'/'+ 'index.html');      //  <-----------  first page dowloaded .....
+	res.sendFile(__dirname +'/'+ 'index.html');      //  <---  first page dowloaded ...
 	console.log('file connected!');
 }).listen(8000);
 
-  app.get('/Block-file', function(req, res){
+  app.get('/Block-file', function(req, res){       // <---  return here ... 0001
   res.sendFile(__dirname +'/'+ 'myBlock.html');
   console.log('Block connected!');
 });
 
-app.post('/login', function(req, res){
+app.post('/login', function(req, res){       // <--- receive infos by login form and catch user and email customers ...
 	var user=req.body.user;
 	var email=req.body.email;
 	var timestamp=Date();
 
    
-   var customs=new Customs({
+   var customs=new Customs({                //  <--- customs schema ...
     user: user,
     email:email,
     data:timestamp  
 });
-   customs.save(function(err){
+   customs.save(function(err){             // <--- seve all in db ...
    if (err) throw err;
    res.end(JSON.stringify(customs));
       console.log('informations are saved ind db!');
@@ -53,7 +53,7 @@ app.post('/login', function(req, res){
 
 
 
-MongoClient.connect(url, function(err, db) {
+MongoClient.connect(url, function(err, db) {   //  <------ request infos saved in db via login! and put on inside the collection "customs"...
   if (err) throw err;
   var dbo = db.db("database001");
   query={user: req.body.user, email: req.body.email};
@@ -65,7 +65,7 @@ MongoClient.connect(url, function(err, db) {
   });
 }); 
 // use ajax for output information to index file?...  working in progress...
-res.redirect('/Block-file')
+res.redirect('/Block-file')  // <--- back here 0001 ...
 });
   
 
@@ -75,7 +75,7 @@ app.get('/myBlock', function(req, res){
   console.log('block file html connected!');
 });
 
-app.post('/blocker', function(req, res){
+app.post('/blocker', function(req, res){  // <--- catch infos via second private form after the first login ... 
   var name=req.body.nome;
   var title=req.body.titolo;
   var price=req.body.price;
