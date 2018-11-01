@@ -11,13 +11,16 @@ var chainer=require('./blockchain.js');
 //   https://developers.caffeina.com/chiccocoin-learn-what-is-a-blockchain-by-creating-one-in-nodejs-12929a89208b
 //   https://www.youtube.com/watch?v=VBu7lgSR9sc  
 
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://mongo1985:internazionale1985@ds245680.mlab.com:45680/database001";
+
 app.set('view engine', 'ejs');
 app.use(bodyP.urlencoded({extended: true}));
 app.use(bodyP.json());
 
 
 app.get('/', function(req, res){
-	res.sendFile(__dirname +'/'+ 'index.html');
+	res.sendFile(__dirname +'/'+ 'index.html');      //  <-----------  first page dowloaded .....
 	console.log('file connected!');
 }).listen(8000);
 
@@ -48,8 +51,7 @@ app.post('/login', function(req, res){
    //res.end(JSON.stringify(customs));
    
 
-   var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://mongo1985:internazionale1985@ds245680.mlab.com:45680/database001";
+
 
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
@@ -86,9 +88,6 @@ app.post('/blocker', function(req, res){
   console.log(hash);
 
 //   -------->  last block function 
-
-   var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://mongo1985:internazionale1985@ds245680.mlab.com:45680/database001";
 
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
@@ -152,8 +151,6 @@ var exHash = Blockchain.getLastBlock().header;
 
 
 
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://mongo1985:internazionale1985@ds245680.mlab.com:45680/database001";
 
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
