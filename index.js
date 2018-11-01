@@ -20,7 +20,7 @@ app.use(bodyP.json());
 
 
 app.get('/', function(req, res){
-	res.sendFile(__dirname +'/'+ 'index.html');      //  <---  first page dowloaded ...
+	res.sendFile(__dirname +'/'+ 'index.html');      //  <---  first page dowloaded at port number 8000 ...
 	console.log('file connected!');
 }).listen(8000);
 
@@ -29,7 +29,8 @@ app.get('/', function(req, res){
   console.log('Block connected!');
 });
 
-app.post('/login', function(req, res){       // <--- receive infos by login form and catch user and email customers ...
+app.post('/login', function(req, res){  // <--- app.post start **** ******************************************************
+                                        //receive infos by login form and catch user and email customers ...
 	var user=req.body.user;
 	var email=req.body.email;
 	var timestamp=Date();
@@ -66,16 +67,15 @@ MongoClient.connect(url, function(err, db) {   //  <------ request infos saved i
 }); 
 // use ajax for output information to index file?...  working in progress...
 res.redirect('/Block-file')  // <--- back here 0001 ...
-});
-  
-
+});                                                   // <--- end app.post  ******************************************* ...
 
 app.get('/myBlock', function(req, res){
   res.sendFile(__dirname +'/'+ 'costructor.html');
   console.log('block file html connected!');
 });
 
-app.post('/blocker', function(req, res){  // <--- catch infos via second private form after the first login ... 
+app.post('/blocker', function(req, res){            // <--- app.post start ********************************************* ...
+                                                    // <--- catch infos via private form after the first login ... 
   var name=req.body.nome;
   var title=req.body.titolo;
   var price=req.body.price;
@@ -95,13 +95,17 @@ MongoClient.connect(url, function(err, db) {
   
       dbo.collection("blockchains").findOne({}, {sort: {_id: -1}, limit: 1}, function(err, result) {
 
-  if (err) throw err;
+  if (err) throw err;                                                                                  // <--- da sistemare ...
 
-    console.log('Ultima funzione ...' + result.id);
-    var preId=result.id-1;
+   console.log('Ultima funzione ...' + result.id);
+    var preId=result.id;
     dbo.collection("blockchains").findOne({id: preId}, function(err, results){  
 if (err) throw err;
 console.log('penultima funzione ...' + (results.id) + '          penultimo hash '+  (results.index));
+
+
+
+
 var exHash = results.index;
 
     var blockchains=new myBlocks({
@@ -111,70 +115,79 @@ var exHash = results.index;
     detail: detail,
     data: Date()
    
-  });
+  });  
 
 
-blockchains.save(function(err){
+
+blockchains.save(function(err){    //  <--- INPUT TRANSACTION ...
    if (err) throw err;
    res.end(JSON.stringify(blockchains));
       console.log('your block are saved in db!');
    });  
 
     db.close();
-  });
-}); 
-    });
-    //});
-// use ajax for output information to index file?...  working in progress...
-//res.redirect('/Block-file')
+  //});
 
 
-
-
- var Block = new firstBlock(hash, exHash, price, timestamp);
+var Block = new firstBlock(hash, exHash, price, timestamp);
 var Blockchain = new chainer();
 Blockchain.createGenesisBlock(0, 'zero', 'my genesis block!!', Date());
 Blockchain.getLastBlock();
-var ccc = Blockchain.addBlock(Block);
-//console.log('ccc = '+ccc+' <---- ccc');
-console.log('Blockchain ---> '+JSON.stringify(Blockchain)+ '<----- Blockchain');
-console.log('Block ---> '+JSON.stringify(Block)+' <-----Block');
-console.log('Last Block ---> '+JSON.stringify(Blockchain.getLastBlock(ccc))+' <--- last Block');
-console.log('Last hash -->'+JSON.stringify(Blockchain.getLastBlock(ccc).header)+'<--- last hash');
-var exHash = Blockchain.getLastBlock().header;
-//var exHash2 = previousBlockHeader;
+Blockchain.addBlock(Block);
+var exHash = results.index;
+//var exHash = Blockchain.getLastBlock().header;  
 
-
-
-// -------->    
-
-
-
-
-
-MongoClient.connect(url, function(err, db) {
+//});
+MongoClient.connect(url, function(err, db) {    // <--- OUTPUT TRANSACTION ...
   if (err) throw err;
   var dbo = db.db("database001");
   query={index: hash, previous: exHash, transaction: req.body.price, detail: req.body.detail, data: Date()};
   dbo.collection("blockchain").find(query).toArray(function(err, result) {
   if (err) throw err;
   
-fs.appendFile('costructor.html', JSON.stringify(query), 'utf8' ,function (err) {
+/*fs.appendFile('costructor.html', JSON.stringify(query), 'utf8' ,function (err) {
   if (err) throw err;
   
   console.log('Saved!');
 
-}); 
+}); */  });
     res.end(JSON.stringify(result));
     console.log(JSON.stringify(query));
     db.close();
   });
 }); 
+    });   });
 res.redirect('/myBlock');
 });
 
+    /*  <---  end app.post ************************************************************ ...
+    
+******  ******  ******  *****   ******  ******  ******
+*       *    *  *    *  *    *  *    *  *       *
+*  ***  ******  *****   * ***   ******  *  ***  * ****
+*    *  *    *  *   *   *    *  *    *  *    *  *
+******  *    *  *    *  *****   *    *  ******  ******
 
-    /*var block=new Block();
+
+
+
+*//*
+<<                    -----------------------------------------------------------                     >>
+
+
+
+//console.log('ccc = '+ccc+' <---- ccc');
+/*console.log('Blockchain ---> '+JSON.stringify(Blockchain)+ '<----- Blockchain');
+console.log('Block ---> '+JSON.stringify(Block)+' <-----Block');
+console.log('Last Block ---> '+JSON.stringify(Blockchain.getLastBlock(ccc))+' <--- last Block');
+console.log('Last hash -->'+JSON.stringify(Blockchain.getLastBlock(ccc).header)+'<--- last hash');   */
+
+
+
+/*
+
+
+    var block=new Block();
     var blockchain=new Blockchain();
 
     var genesis=blockchain.createGenesisBlock();
@@ -216,3 +229,11 @@ MongoClient.connect(url, function(err, db) {
 }
 //});
 ------------------------------------------------- */
+/*
+
+******  ******  ******  *****   ******  ******  ******
+*       *    *  *    *  *    *  *    *  *       *
+*  ***  ******  *****   * ***   ******  *  ***  * ****
+*    *  *    *  *   *   *    *  *    *  *    *  *
+******  *    *  *    *  *****   *    *  ******  ******
+*/
