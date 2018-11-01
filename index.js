@@ -97,11 +97,11 @@ MongoClient.connect(url, function(err, db) {
 
   if (err) throw err;                                                                                  // <--- da sistemare ...
 
-   console.log('Ultima funzione ...' + result.id);
+   console.log('Ultima funzione ... ---->' + result.id);
     var preId=result.id;
     dbo.collection("blockchains").findOne({id: preId}, function(err, results){  
 if (err) throw err;
-console.log('penultima funzione ...' + (results.id) + '          penultimo hash '+  (results.index));
+console.log('penultima funzione ... ---->' + (results.id) + '  penultimo hash -----> '+  (results.index));
 
 
 
