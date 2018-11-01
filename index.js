@@ -5,11 +5,23 @@ var bodyP=require('body-parser');
 var Customs=require('./mongoose.js');             // <--- including js libreries ...
 var myBlocks=require('./myBlock.js');
 var cryptoJs=require('crypto-js');
+var request = require('request');
 //var firstBlock = require('./block.js');
 //var chainer=require('./blockchain.js');
 //   https://enlight.nyc/projects/blockchain/
 //   https://developers.caffeina.com/chiccocoin-learn-what-is-a-blockchain-by-creating-one-in-nodejs-12929a89208b
 //   https://www.youtube.com/watch?v=VBu7lgSR9sc  
+//https://www.youtube.com/watch?v=lUiKpNU2Tx4   bitcore
+
+/*
+request({
+  url: "http://blockchain.info/stats?format=json",
+  json: true
+});
+
+*/
+
+
 
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://mongo1985:internazionale1985@ds245680.mlab.com:45680/database001";
