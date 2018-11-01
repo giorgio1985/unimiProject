@@ -5,8 +5,8 @@ var bodyP=require('body-parser');
 var Customs=require('./mongoose.js');             // <--- including js libreries ...
 var myBlocks=require('./myBlock.js');
 var cryptoJs=require('crypto-js');
-var firstBlock = require('./block.js');
-var chainer=require('./blockchain.js');
+//var firstBlock = require('./block.js');
+//var chainer=require('./blockchain.js');
 //   https://enlight.nyc/projects/blockchain/
 //   https://developers.caffeina.com/chiccocoin-learn-what-is-a-blockchain-by-creating-one-in-nodejs-12929a89208b
 //   https://www.youtube.com/watch?v=VBu7lgSR9sc  
@@ -129,13 +129,8 @@ blockchains.save(function(err){    //  <--- INPUT TRANSACTION ...
   //});
 
 
-var Block = new firstBlock(hash, exHash, price, timestamp);
-var Blockchain = new chainer();
-Blockchain.createGenesisBlock(0, 'zero', 'my genesis block!!', Date());
-Blockchain.getLastBlock();
-Blockchain.addBlock(Block);
 var exHash = results.index;
-//var exHash = Blockchain.getLastBlock().header;  
+ 
 
 //});
 MongoClient.connect(url, function(err, db) {    // <--- OUTPUT TRANSACTION ...
@@ -145,14 +140,16 @@ MongoClient.connect(url, function(err, db) {    // <--- OUTPUT TRANSACTION ...
   dbo.collection("blockchain").find(query).toArray(function(err, result) {
   if (err) throw err;
   
-/*fs.appendFile('costructor.html', JSON.stringify(query), 'utf8' ,function (err) {
+fs.appendFile('costructor.html', JSON.stringify(query), 'utf8' ,function (err) {
   if (err) throw err;
   
   console.log('Saved!');
 
-}); */  });
+}); 
     res.end(JSON.stringify(result));
     console.log(JSON.stringify(query));
+ });
+
     db.close();
   });
 }); 
@@ -174,6 +171,12 @@ res.redirect('/myBlock');
 *//*
 <<                    -----------------------------------------------------------                     >>
 
+/*var Block = new firstBlock(hash, exHash, price, timestamp);
+var Blockchain = new chainer();
+Blockchain.createGenesisBlock(0, 'zero', 'my genesis block!!', Date());
+Blockchain.getLastBlock();
+Blockchain.addBlock(Block);*/
+//var exHash = Blockchain.getLastBlock().header; 
 
 
 //console.log('ccc = '+ccc+' <---- ccc');
