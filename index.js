@@ -2,7 +2,7 @@ var express=require('express');
 var app=express();
 var fs = require('fs');
 var bodyP=require('body-parser');
-var Customs=require('./mongoose.js');             // <--- including js libreries ...
+var Customs=require('./mongoose.js');             // <--- including nodejs libreries ...
 var myBlocks=require('./myBlock.js');
 var cryptoJs=require('crypto-js');
 var request = require('request');
@@ -17,6 +17,8 @@ var request = require('request');
 request({
   url: "http://blockchain.info/stats?format=json",
   json: true
+}, function(error, response, body){
+  console.log(body);
 });
 
 */
@@ -167,6 +169,13 @@ fs.appendFile('costructor.html', JSON.stringify(query), 'utf8' ,function (err) {
 }); 
     });   });
 res.redirect('/myBlock');
+});
+
+request({
+  url: "http://blockchain.info/stats?format=json",
+  json: true
+}, function(error, response, body){
+  console.log(body);
 });
 
     /*  <---  end app.post ************************************************************ ...
