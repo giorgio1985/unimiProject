@@ -52,6 +52,11 @@ body, html {
     border-radius: 50%;
 }
 
+.btcTable {
+    position: relative;
+    margin-top: 1000px;
+}
+
 /*
  * Form styles
  */

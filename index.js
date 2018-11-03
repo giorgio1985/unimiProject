@@ -175,7 +175,8 @@ request({
   url: "http://blockchain.info/stats?format=json",
   json: true
 }, function(error, response, body){
-  console.log(body);
+  console.log('1 BTC = '+ body.market_price_usd + ' USD');
+
 });
 
     /*  <---  end app.post ************************************************************ ...
