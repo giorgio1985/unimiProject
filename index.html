@@ -17,6 +17,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <script src="./unimiProject/jquery.min.js"></script>
+  <script src="./index.js"></script>
+  <script src="./btcPrice.js"></script>
   <!-- https://bootsnipp.com/tags/forms  -->
 
 
@@ -27,7 +29,7 @@
     <link href="navbar-top-fixed.css" rel="stylesheet">
   </head>
 
-  <body>
+  <body onload="btcStockPrice()">
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <a class="navbar-brand" href="#">Fixed navbar</a>
@@ -58,7 +60,7 @@
         <div class="card card-container">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <!--<img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" /> -->
-            <table class="btcTable" border="1" width="100px" height="200px" ></table>
+            <table class="btcTable" border="1" width="100px" height="200px" ><P></P></table>
             <p id="profile-name" class="profile-name-card"></p>
             
 

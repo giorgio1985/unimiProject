@@ -55,8 +55,13 @@ body, html {
 .btcTable {
     position: relative;
     margin-top: 1000px;
+    border: 1px solid black;
 }
 
+.conteiner {
+    margin-top: 500px;
+    position: relative;
+}
 /*
  * Form styles
  */
