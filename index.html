@@ -17,8 +17,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <script src="./unimiProject/jquery.min.js"></script>
-  <script src="./index.js"></script>
-  <script src="./btcPrice.js"></script>
+  <script src="./mongoose.js"></script>
+  <!--<script src="./btcPrice.js"></script> -->
   <!-- https://bootsnipp.com/tags/forms  -->
 
 
@@ -29,7 +29,7 @@
     <link href="navbar-top-fixed.css" rel="stylesheet">
   </head>
 
-  <body onload="btcStockPrice()">
+  <body>
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <a class="navbar-brand" href="#">Fixed navbar</a>
@@ -66,8 +66,8 @@
 
             <form class="form-signin" method="post" action="/login">
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <input type="email" name="email" id="email" class="form-control" placeholder="email" required="">
+                <input type="password" name="pass" id="pass" class="form-control" placeholder="password" required="">
                 <div id="remember" class="checkbox">
                     <label>
                         <input type="checkbox" value="remember-me"> Remember me

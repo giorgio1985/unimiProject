@@ -45,16 +45,19 @@ app.get('/', function(req, res){
 
 app.post('/login', function(req, res){  // <--- app.post start **** ******************************************************
                                         //receive infos by login form and catch user and email customers ...
-	var user=req.body.user;
 	var email=req.body.email;
-	var timestamp=Date();
+	var pass=req.body.pass;
+  var timestamp=Date();
 
-   
+  console.log('provaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa    '+ email+ '  '+ pass+ '   ' +timestamp);
    var customs=new Customs({                //  <--- customs schema ...
-    user: user,
-    email:email,
-    data:timestamp  
-});
+    email: email,
+    pass: pass,
+    date: timestamp
+
+  });
+
+     
    customs.save(function(err){             // <--- seve all in db ...
    if (err) throw err;
    res.end(JSON.stringify(customs));
@@ -71,13 +74,14 @@ app.post('/login', function(req, res){  // <--- app.post start **** ************
 MongoClient.connect(url, function(err, db) {   //  <------ request infos saved in db via login! and put on inside the collection "customs"...
   if (err) throw err;
   var dbo = db.db("database001");
-  query={user: req.body.user, email: req.body.email};
+  query={email: email, pass: pass};
   dbo.collection("customs").find(query).toArray(function(err, result) {
   if (err) throw err;
 
     console.log(result);
-    db.close();
+  
   });
+    //db.close();
 }); 
 // use ajax for output information to index file?...  working in progress...
 res.redirect('/Block-file')  // <--- back here 0001 ...
