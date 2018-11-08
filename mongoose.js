@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 var Customs = new Schema({
 	email: String,
     pass: String,
+    bitAddress: String,
 	date: Date
 });
 

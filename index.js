@@ -47,12 +47,20 @@ app.post('/login', function(req, res){  // <--- app.post start **** ************
                                         //receive infos by login form and catch user and email customers ...
 	var email=req.body.email;
 	var pass=req.body.pass;
+
+
+  var bitAdd=email + pass;
+  var bitHash = cryptoJs.SHA256(bitAdd).toString();
+ 
+
+  var bitAddress= bitHash;
   var timestamp=Date();
 
-  console.log('provaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa    '+ email+ '  '+ pass+ '   ' +timestamp);
+  console.log('provaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa    '+ email+ '  '+ pass+ '  '+ bitAddress+'  ' +timestamp);
    var customs=new Customs({                //  <--- customs schema ...
     email: email,
     pass: pass,
+    bitAddress: bitAddress,
     date: timestamp
 
   });
