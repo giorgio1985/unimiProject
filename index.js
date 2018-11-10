@@ -56,10 +56,36 @@ app.post('/login', function(req, res){  // <--- app.post start **** ************
   var bitAddress= bitHash;
   var timestamp=Date();
 
-  console.log('provaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa    '+ email+ '  '+ pass+ '  '+ bitAddress+'  ' +timestamp);
+
+
+function verifyAccount(){ 
+
+  MongoClient.connect(url, function(err, db) {   //  <------ request infos saved in db via login! and put on inside the collection "customs"...
+  if (err) throw err;
+  var dbo = db.db("database001");
+  query={bitAddress: bitAddress, date: Date()};
+  dbo.collection("customs").find(query).toArray(function(err, result) {
+  if (err) throw err;
+ console.log('provaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa    '+ email+ '  '+ pass+ '  '+ bitAddress+'  ' +timestamp);
+
    var customs=new Customs({                //  <--- customs schema ...
-    email: email,
-    pass: pass,
+    bitAddress: bitAddress,
+    date: timestamp
+
+  });
+
+  customs.save(function(err){             // <--- seve all in db ...
+   if (err) throw err;
+   res.end(JSON.stringify(customs));
+      console.log('informations are saved ind db!');
+   });
+    console.log(result);
+  
+  });
+    //db.close();
+}); }  
+  /*console.log('provaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa    '+ email+ '  '+ pass+ '  '+ bitAddress+'  ' +timestamp);
+   var customs=new Customs({                //  <--- customs schema ...
     bitAddress: bitAddress,
     date: timestamp
 
@@ -71,18 +97,17 @@ app.post('/login', function(req, res){  // <--- app.post start **** ************
    res.end(JSON.stringify(customs));
       console.log('informations are saved ind db!');
    });
-  
-  
+  */
 
    //res.end(JSON.stringify(customs));
    
-
-
-
-MongoClient.connect(url, function(err, db) {   //  <------ request infos saved in db via login! and put on inside the collection "customs"...
+//    here exfunction verify accont....
+/*
+function verifyAccount(){ 
+  MongoClient.connect(url, function(err, db) {   //  <------ request infos saved in db via login! and put on inside the collection "customs"...
   if (err) throw err;
   var dbo = db.db("database001");
-  query={email: email, pass: pass};
+  query={bitAddress: bitAddress, date: Date()};
   dbo.collection("customs").find(query).toArray(function(err, result) {
   if (err) throw err;
 
@@ -90,7 +115,8 @@ MongoClient.connect(url, function(err, db) {   //  <------ request infos saved i
   
   });
     //db.close();
-}); 
+}); }   */
+
 // use ajax for output information to index file?...  working in progress...
 res.redirect('/Block-file')  // <--- back here 0001 ...
 });                                                   // <--- end app.post  ******************************************* ...
