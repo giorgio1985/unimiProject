@@ -6,8 +6,6 @@ var Customs=require('./mongoose.js');             // <--- including nodejs libre
 var myBlocks=require('./myBlock.js');
 var cryptoJs=require('crypto-js');
 var request = require('request');
-//var firstBlock = require('./block.js');
-//var chainer=require('./blockchain.js');
 //   https://enlight.nyc/projects/blockchain/
 //   https://developers.caffeina.com/chiccocoin-learn-what-is-a-blockchain-by-creating-one-in-nodejs-12929a89208b
 //   https://www.youtube.com/watch?v=VBu7lgSR9sc  
@@ -22,9 +20,6 @@ request({
 });
 
 */
-
-
-
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://mongo1985:internazionale1985@ds245680.mlab.com:45680/database001";
 
@@ -58,14 +53,13 @@ app.post('/login', function(req, res){  // <--- app.post start **** ************
 
 
 
-function verifyAccount(){ 
-
   MongoClient.connect(url, function(err, db) {   //  <------ request infos saved in db via login! and put on inside the collection "customs"...
   if (err) throw err;
   var dbo = db.db("database001");
   query={bitAddress: bitAddress, date: Date()};
   dbo.collection("customs").find(query).toArray(function(err, result) {
   if (err) throw err;
+  if (bitAddress) {
  console.log('provaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa    '+ email+ '  '+ pass+ '  '+ bitAddress+'  ' +timestamp);
 
    var customs=new Customs({                //  <--- customs schema ...
@@ -76,46 +70,15 @@ function verifyAccount(){
 
   customs.save(function(err){             // <--- seve all in db ...
    if (err) throw err;
-   res.end(JSON.stringify(customs));
+   res.end(JSON.stringify(query.bitAddress));
       console.log('informations are saved ind db!');
    });
     console.log(result);
-  
+  } else console.log('errore di qualcosa....');
   });
-    //db.close();
-}); }  
-  /*console.log('provaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa    '+ email+ '  '+ pass+ '  '+ bitAddress+'  ' +timestamp);
-   var customs=new Customs({                //  <--- customs schema ...
-    bitAddress: bitAddress,
-    date: timestamp
+    
+});
 
-  });
-
-     
-   customs.save(function(err){             // <--- seve all in db ...
-   if (err) throw err;
-   res.end(JSON.stringify(customs));
-      console.log('informations are saved ind db!');
-   });
-  */
-
-   //res.end(JSON.stringify(customs));
-   
-//    here exfunction verify accont....
-/*
-function verifyAccount(){ 
-  MongoClient.connect(url, function(err, db) {   //  <------ request infos saved in db via login! and put on inside the collection "customs"...
-  if (err) throw err;
-  var dbo = db.db("database001");
-  query={bitAddress: bitAddress, date: Date()};
-  dbo.collection("customs").find(query).toArray(function(err, result) {
-  if (err) throw err;
-
-    console.log(result);
-  
-  });
-    //db.close();
-}); }   */
 
 // use ajax for output information to index file?...  working in progress...
 res.redirect('/Block-file')  // <--- back here 0001 ...
