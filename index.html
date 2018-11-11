@@ -60,7 +60,16 @@
         <div class="card card-container">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <!--<img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" /> -->
-            <table class="btcTable" border="1" width="100px" height="200px" ><P></P></table>
+            
+
+            <table class="btcTable" border="1" width="100px" height="200px" >
+            <P>
+              <div id="btc-converter"></div>
+             
+            </P>
+            </table>
+
+
             <p id="profile-name" class="profile-name-card"></p>
             
 
@@ -81,7 +90,25 @@
         </div><!-- /card-container -->
     </div><!-- /container -->
     </main>
+<script type="text/javascript">
+      $(document).ready(function(){
+    //    function converter(){
+      console.log('document ready');
+         
+function update() {
+    $.getJSON('http://blockchain.info/stats?format=json').done(function(res) {
+        $('#btc-converter').html(res.market_price_usd); 
+        alert('che palle');
+    });
+}
 
+ window.setInterval(update, 600);
+       alert('ci riprovo');
+      //}
+       // $('#btc-converter').html(converter());
+
+      });        
+</script> 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -178,3 +205,4 @@ function testLocalStorageData() {
     </script>
 </body>
 </html>
+
