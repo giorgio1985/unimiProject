@@ -12,13 +12,13 @@
   <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="sticky-footer-navbar.css" rel="stylesheet"> 
   <link rel="stylesheet" type="text/css" href="./index.css">
+  <link rel="stylesheet" type="text/css" href="./footer.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <script src="./unimiProject/jquery.min.js"></script>
-  <script src="./mongoose.js"></script>
-  <!--<script src="./btcPrice.js"></script> -->
+  
   <!-- https://bootsnipp.com/tags/forms  -->
 
 
@@ -59,18 +59,10 @@
      <div class="container">
         <div class="card card-container">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-            <!--<img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" /> -->
-            
+           <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" /> 
+          
 
-            <table class="btcTable" border="1" width="100px" height="200px" >
-            <P>
-              <div id="btc-converter"></div>
-             
-            </P>
-            </table>
-
-
-            <p id="profile-name" class="profile-name-card"></p>
+         <!--   <p id="profile-name" class="profile-name-card"></p>    -->
             
 
             <form class="form-signin" method="post" action="/login">
@@ -89,26 +81,27 @@
             </a>
         </div><!-- /card-container -->
     </div><!-- /container -->
+     <!-- Footer -->
+<footer class="container-fluid text-center foot">
+
+        <div class="copyrights">
+            <p class="white-txt">Your Site Name © 2017
+                <br><br>
+                <img class="footimg" src="https://openclipart.org/download/59293/logo-water.svg" alt="Logo">
+            </p>
+            <hr class="dark-line">
+            <a class="link" href="#">Contact Us</a>&nbsp
+            <a class="link" href="#">Privacy Policy</a>&nbsp
+            <a class="link" href="#">Terms & Conditions</a>
+            <br><br>
+            <p class="white-txt small">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ornare elit odio, eu imperdiet ligula ullamcorper sed.
+            </p>
+        </div>
+</footer>
+  <!-- Footer -->
     </main>
-<script type="text/javascript">
-      $(document).ready(function(){
-    //    function converter(){
-      console.log('document ready');
-         
-function update() {
-    $.getJSON('http://blockchain.info/stats?format=json').done(function(res) {
-        $('#btc-converter').html(res.market_price_usd); 
-        alert('che palle');
-    });
-}
 
- window.setInterval(update, 600);
-       alert('ci riprovo');
-      //}
-       // $('#btc-converter').html(converter());
-
-      });        
-</script> 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -116,93 +109,6 @@ function update() {
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
-  
-
-
-
-    <script>
-    	$( document ).ready(function() {
-    // DOM ready
-
-    // Test data
-    /*
-     * To test the script you should discomment the function
-     * testLocalStorageData and refresh the page. The function
-     * will load some test data and the loadProfile
-     * will do the changes in the UI
-     */
-    // testLocalStorageData();
-    // Load profile if it exits
-    loadProfile();
-});
-
-/**
- * Function that gets the data of the profile in case
- * thar it has already saved in localstorage. Only the
- * UI will be update in case that all data is available
- *
- * A not existing key in localstorage return null
- *
- */
-function getLocalProfile(callback){
-    var profileImgSrc      = localStorage.getItem("PROFILE_IMG_SRC");
-    var profileName        = localStorage.getItem("PROFILE_NAME");
-    var profileReAuthEmail = localStorage.getItem("PROFILE_REAUTH_EMAIL");
-
-    if(profileName !== null
-            && profileReAuthEmail !== null
-            && profileImgSrc !== null) {
-        callback(profileImgSrc, profileName, profileReAuthEmail);
-    }
-}
-
-/**
- * Main function that load the profile if exists
- * in localstorage
- */
-function loadProfile() {
-    if(!supportsHTML5Storage()) { return false; }
-    // we have to provide to the callback the basic
-    // information to set the profile
-    getLocalProfile(function(profileImgSrc, profileName, profileReAuthEmail) {
-        //changes in the UI
-        $("#profile-img").attr("src",profileImgSrc);
-        $("#profile-name").html(profileName);
-        $("#reauth-email").html(profileReAuthEmail);
-        $("#inputEmail").hide();
-        $("#remember").hide();
-    });
-}
-
-/**
- * function that checks if the browser supports HTML5
- * local storage
- *
- * @returns {boolean}
- */
-function supportsHTML5Storage() {
-    try {
-        return 'localStorage' in window && window['localStorage'] !== null;
-    } catch (e) {
-        return false;
-    }
-}
-
-/**
- * Test data. This data will be safe by the web app
- * in the first successful login of a auth user.
- * To Test the scripts, delete the localstorage data
- * and comment this call.
- *
- * @returns {boolean}
- */
-function testLocalStorageData() {
-    if(!supportsHTML5Storage()) { return false; }
-    localStorage.setItem("PROFILE_IMG_SRC", "//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" );
-    localStorage.setItem("PROFILE_NAME", "César Izquierdo Tello");
-    localStorage.setItem("PROFILE_REAUTH_EMAIL", "oneaccount@gmail.com");
-}
-    </script>
 </body>
 </html>
 
