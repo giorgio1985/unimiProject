@@ -9,7 +9,7 @@ var request = require('request');
 var Address = require('./address.js');
 
 const bitAddress = null;
-const saldo = 1500;
+const saldo = 5000;
 //   https://enlight.nyc/projects/blockchain/
 //   https://developers.caffeina.com/chiccocoin-learn-what-is-a-blockchain-by-creating-one-in-nodejs-12929a89208b
 //   https://www.youtube.com/watch?v=VBu7lgSR9sc  
@@ -62,7 +62,7 @@ app.post('/login', function(req, res){  // <--- app.post start **** ************
   dbo.collection("customs").find(query).toArray(function(err, result) {
   if (err) throw err;
   if (bitAddress) {
- console.log('provaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa    '+ email+ '  '+ pass+ '  '+ bitAddress+'  ' +timestamp);
+ console.log('pbit address funziona    '+ email+ '  '+ pass+ '  '+ bitAddress+'  ' +timestamp);
 
 
    var customs=new Customs({                //  <--- customs schema ...
@@ -147,22 +147,24 @@ blockchains.save(function(err){    //  <--- INPUT TRANSACTION ...
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("database001");
-   query={bitAddress: bitAddress, date: Date()};
-  dbo.collection("customs").find(query).toArray(function(err, result) {
+  query={bitAddress: bitAddress, date: Date()};
+
+ dbo.collection("customs").find(query).project({bitAddress: 1}).toArray(function(err, results) {  
     if (err) throw err;
-
-
-
   var transaction = new Address({
-    coinAddress: result.bitAddress,
+    coinAddress: results,
     transferOUT: price,
     accountBalance: saldo-price,
     date: Date()
     });
-transaction.save(function(err){
+ transaction.save(function(err){
   if (err) throw err;
   return console.log('your transaction are saved!');
 });
+
+// https://www.guru99.com/node-js-mongodb.html   node js and foreach cursor ....
+
+ 
 });
 });
     db.close();
