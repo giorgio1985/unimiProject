@@ -18,10 +18,19 @@ request({
 /* ----------------------------------------------------------------------
 
 
+$ npm install exchange-rates
 
-module.exports = {
-  sayHelloInEnglish: function() {
-    return "HELLO";
-  },
+
+var exchange = require("exchange-rates"),
+	fx = require("money");
+
+exchange.load(function() {
+	// Apply exchange rates and base rate to `fx` object:
+	fx.rates = exchange.rates;
+	fx.base = exchange.base;
+	
+	// money.js is all set up:
+	fx(1).from("GBP").to("USD"); // 1.586 or etc.
+});
 
 */
