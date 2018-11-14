@@ -7,6 +7,7 @@ var myBlocks = require('./myBlock.js');
 var cryptoJs = require('crypto-js');
 var request = require('request');
 var Address = require('./address.js');
+var btcPrice = require('./btcPrice.js');
 
 const bitAddress = null;
 const saldo = 5000;
@@ -34,7 +35,14 @@ app.use(bodyP.json());
 
 app.get('/', function(req, res){
 	res.sendFile(__dirname +'/'+ 'index.html');      //  <---  first page dowloaded at port number 8000 ...
-	console.log('file connected!');
+  request({
+  url: "http://blockchain.info/stats?format=json",
+  json: true
+  }, function(error, response, body){
+   console.log('1 BTC = ' + body.market_price_usd + ' dollars'); 
+        }
+);
+
 }).listen(8000);
 
   app.get('/Block-file', function(req, res){       // <---  return here ... 0001
@@ -204,7 +212,7 @@ res.redirect('/myBlock');
 
 
 
-    /*  <---  end app.post *********************** ...
+/*<----------  end app.post *********************** ...
     
 ******  ******  ******  *****   ******  ******  ******
 *       *    *  *    *  *    *  *    *  *       *
@@ -213,4 +221,4 @@ res.redirect('/myBlock');
 ******  *    *  *    *  *****   *    *  ******  ******
 
 
-------------------------------------------------- */
+------------------------------------------------- ----*/
