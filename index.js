@@ -34,14 +34,20 @@ app.use(bodyP.json());
 
 
 app.get('/', function(req, res){
-	res.sendFile(__dirname +'/'+ 'index.html');      //  <---  first page dowloaded at port number 8000 ...
-  request({
+	res.sendFile(__dirname +'/'+ 'index.html', function(err, res){
+    if (err) throw err;
+
+     request({
   url: "http://blockchain.info/stats?format=json",
   json: true
   }, function(error, response, body){
-   console.log('1 BTC = ' + body.market_price_usd + ' dollars'); 
+    if (err) throw err;
+       console.log('... 1 BTC = ' + body.market_price_usd + ' dollars'); 
+
         }
 );
+  });      //  <---  first page dowloaded at port number 8000 ...
+ 
 
 }).listen(8000);
 
