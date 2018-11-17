@@ -8,6 +8,7 @@ var myBlocks = new Schema({
     index: String,
 	previous: String,
 	transaction: Number,
+	Balance: Number,
 	detail: String,
 	timeStamp: Date
 });

@@ -6,29 +6,16 @@ var Customs = require('./mongoose.js');             // <--- including nodejs lib
 var myBlocks = require('./myBlock.js');
 var cryptoJs = require('crypto-js');
 var request = require('request');
-var Address = require('./address.js');
 var btcPrice = require('./btcPrice.js');
 
-const bitAddress = null;
+var bitAddress = null;
 const saldo = 5000;
-//   https://enlight.nyc/projects/blockchain/
-//   https://developers.caffeina.com/chiccocoin-learn-what-is-a-blockchain-by-creating-one-in-nodejs-12929a89208b
-//   https://www.youtube.com/watch?v=VBu7lgSR9sc  
-//https://www.youtube.com/watch?v=lUiKpNU2Tx4   bitcore
 
-/*
-request({
-  url: "http://blockchain.info/stats?format=json",
-  json: true
-}, function(error, response, body){
-  console.log(body);
-});
 
-*/
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://mongo1985:internazionale1985@ds245680.mlab.com:45680/database001";
 
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
 app.use(bodyP.urlencoded({extended: true}));
 app.use(bodyP.json());
 
@@ -69,6 +56,9 @@ app.post('/login', function(req, res){  // <--- app.post start **** ************
   var bitAddress= bitHash;
   var timestamp=Date();
 
+    //db.close();
+  /*-------------------------------------------------------------------------------------*/
+
   MongoClient.connect(url, function(err, db) {   //  <------ request infos saved in db via login! and put on inside the collection "customs"...
   if (err) throw err;
   var dbo = db.db("database001");
@@ -76,7 +66,7 @@ app.post('/login', function(req, res){  // <--- app.post start **** ************
   dbo.collection("customs").find(query).toArray(function(err, result) {
   if (err) throw err;
   if (bitAddress) {
- console.log('pbit address funziona    '+ email+ '  '+ pass+ '  '+ bitAddress+'  ' +timestamp);
+ console.log('bit address funziona    '+ email+ '  '+ pass+ '  '+ bitAddress+'  ' +timestamp);
 
 
    var customs=new Customs({                //  <--- customs schema ...
@@ -89,8 +79,7 @@ app.post('/login', function(req, res){  // <--- app.post start **** ************
 
   customs.save(function(err){             // <--- seve all in db ...
    if (err) throw err;
-   res.end(JSON.stringify(query.bitAddress));
-      console.log('informations are saved ind db!');
+      console.log('informations are saved ind db!'+ bitAddress);
    });
     console.log(result);
   } else console.log('errore di qualcosa....');
@@ -135,15 +124,19 @@ MongoClient.connect(url, function(err, db) {
     var preId=result.id;
     dbo.collection("blockchains").findOne({id: preId}, function(err, results){  
 if (err) throw err;
-console.log('penultima funzione ... ---->' + (results.id) + '  penultimo hash -----> '+  (results.index));
+console.log('penultima funzione ... ---->' + (results.id) + '  penultimo hash -----> '+  (results.index)+ '  '+(results.transaction));
+
 
 
 var exHash = results.index;
+var exTrans = results.transaction;
+var balance = Number(exTrans) + Number(price);
 
     var blockchains = new myBlocks({
     index: hash,
     previous:exHash,
     transaction: price,
+    Balance: balance,
     detail: detail,
     data: Date()
    
@@ -155,33 +148,6 @@ blockchains.save(function(err){    //  <--- INPUT TRANSACTION ...
    res.end(JSON.stringify(blockchains));
       console.log('your block are saved in db!');
    });  
-
-
-
-MongoClient.connect(url, function(err, db) {
-  if (err) throw err;
-  var dbo = db.db("database001");
-  query={bitAddress: bitAddress, date: Date()};
-
- dbo.collection("customs").find(query).project({bitAddress: 1}).toArray(function(err, results) {  
-    if (err) throw err;
-  var transaction = new Address({
-    coinAddress: results,
-    transferOUT: price,
-    accountBalance: saldo-price,
-    date: Date()
-    });
- transaction.save(function(err){
-  if (err) throw err;
-  return console.log('your transaction are saved!');
-});
-
-// https://www.guru99.com/node-js-mongodb.html   node js and foreach cursor ....
-
- 
-});
-});
-    db.close();
   
 
 
@@ -199,7 +165,7 @@ MongoClient.connect(url, function(err, db) {    // <--- OUTPUT TRANSACTION ...
   dbo.collection("blockchain").find(query).toArray(function(err, result) {
   if (err) throw err;
   
-fs.appendFile('costructor.html', JSON.stringify(query), 'utf8' ,function (err) {
+fs.appendFile('costructor.html', JSON.stringify({transaction: req.body.price, data: Date}), 'utf8' ,function (err) {
   if (err) throw err;
   
   console.log('Saved!');
