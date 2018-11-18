@@ -5,8 +5,8 @@ var bodyP = require('body-parser');
 var Customs = require('./mongoose.js');             // <--- including nodejs libreries ...
 var myBlocks = require('./myBlock.js');
 var cryptoJs = require('crypto-js');
-var request = require('request');
-var btcPrice = require('./btcPrice.js');
+//var request = require('request');
+//var btcPrice = require('./btcPrice.js');
 
 var bitAddress = null;
 const saldo = 5000;
@@ -15,7 +15,7 @@ const saldo = 5000;
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://mongo1985:internazionale1985@ds245680.mlab.com:45680/database001";
 
-//app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
 app.use(bodyP.urlencoded({extended: true}));
 app.use(bodyP.json());
 
@@ -24,7 +24,7 @@ app.get('/', function(req, res){
 	res.sendFile(__dirname +'/'+ 'index.html', function(err, res){
     if (err) throw err;
 
-     request({
+   /* request({
   url: "http://blockchain.info/stats?format=json",
   json: true
   }, function(error, response, body){
@@ -32,7 +32,7 @@ app.get('/', function(req, res){
        console.log('... 1 BTC = ' + body.market_price_usd + ' dollars'); 
 
         }
-);
+);*/
   });      //  <---  first page dowloaded at port number 8000 ...
  
 
@@ -165,13 +165,23 @@ MongoClient.connect(url, function(err, db) {    // <--- OUTPUT TRANSACTION ...
   dbo.collection("blockchain").find(query).toArray(function(err, result) {
   if (err) throw err;
   
-fs.appendFile('costructor.html', JSON.stringify({transaction: req.body.price, data: Date}), 'utf8' ,function (err) {
+fs.appendFile('costructor.html', JSON.stringify({transaction: req.body.price, data: Date(), index: hash}), 'utf8' ,function (err) {
   if (err) throw err;
-  
+   // res.end(JSON.stringify(result));
+  /* res.end('<!DOCTYPE html>'+
+'<html>'+
+'    <head>'+
+'        <meta charset="utf-8" />'+
+'        <title>Pagina Node.js!</title>'+
+'    </head>'+ 
+'    <body>'+
+'       <p>Sono un paragrafo <strong>HTML</strong>!</p>'+
+'    </body>'+
+'</html>');*/
   console.log('Saved!');
 
 }); 
-    res.end(JSON.stringify(result));
+  
     console.log(JSON.stringify(query));
  });
 

@@ -19,31 +19,30 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <script src="./unimiProject/jquery.min.js"></script>
   <script src="./myBlock.js"></script>
-  
 
+  <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="navbar-top-fixed.css" rel="stylesheet">
+  
+<!--
  
  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+ <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>  -->
 </head>
 <!------ Include the above in your HEAD tag ---------->
 <body>
  
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Fixed navbar</a>
+      <a class="navbar-brand" href="#">B-Chain</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
         </ul>
         <form class="form-inline mt-2 mt-md-0">
@@ -66,28 +65,28 @@
 <!-- Form Name -->
 
 
-<!-- Text input-->
+<!-- Name input-->
 <div class="form-group">
-  <label class="col-md-16 control-label" for="name">name</label>  
-  <div class="col-md-16">
+  <label class="col-md-18 control-label" for="name">name</label>  
+  <div class="col-md-18">
   <input id="nome" name="nome" placeholder="Input name" class="form-control input-md" required="" type="text">
   <span class="help-block">Pleae type name</span>  
   </div>
 </div>
 
-<!-- Text input-->
+<!-- Title input-->
 <div class="form-group">
-  <label class="col-md-16 control-label" for="title">Title</label>  
-  <div class="col-md-16">
+  <label class="col-md-18 control-label" for="title">Title</label>  
+  <div class="col-md-18">
   <input id="titolo" name="titolo" placeholder="Input title" class="form-control input-md" required="" type="text">
   <span class="help-block">Please type title</span>  
   </div>
 </div>
 
-<!-- Text input-->
+<!-- Price input-->
 <div class="form-group">
-  <label class="col-md-16 control-label" for="price">Price</label>  
-  <div class="col-md-16">
+  <label class="col-md-18 control-label" for="price">Price</label>  
+  <div class="col-md-18">
   <input id="price" name="price" placeholder="Input proce" class="form-control input-md" required="" type="number">
   <span class="help-block">Input price</span>  
   </div>
@@ -95,16 +94,16 @@
 
 <!-- Textarea -->
 <div class="form-group">
-  <label class="col-md-16 control-label" for="detail">Detail</label>
-  <div class="col-md-16">                     
+  <label class="col-md-18 control-label" for="detail">Detail</label>
+  <div class="col-md-18">                     
     <textarea class="form-control" id="detail" name="detail" type="text"></textarea>
   </div>
 </div>
 
 <div class="form-group">
-  <label class="col-md-16 control-label" for="detail">submit</label>
-  <div class="col-md-16">                     
-    <button class="btn btn-primary" type="submit">Button</button>
+  <label class="col-md-18 control-label" for="detail">submit</label>
+  <div class="col-md-18">                     
+    <button class="btn btn-primary" type="submit" onclick="clickFunction()">Button</button>
   </div>
 </div>
 
@@ -112,26 +111,17 @@
 </form>
   </div>
 </div>
-
+<script>
+  function clickFunction(){
+   window.alert('remember that value change:  1 BTC = 5045 $ !!!');
+alert('great! print the buletin of transaction...');
+  }
+</script>
 </main>
-
+<hr>
      <!-- Footer -->
-<footer class="container-fluid text-center foot">
+<footer class="footer">
 
-        <div class="copyrights">
-            <p class="white-txt">Your Site Name © 2017
-                <br><br>
-                <img class="footimg" src="https://openclipart.org/download/59293/logo-water.svg" alt="Logo">
-            </p>
-            <hr class="dark-line">
-            <a class="link" href="#">Contact Us</a>&nbsp
-            <a class="link" href="#">Privacy Policy</a>&nbsp
-            <a class="link" href="#">Terms & Conditions</a>
-            <br><br>
-            <p class="white-txt small">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ornare elit odio, eu imperdiet ligula ullamcorper sed.
-            </p>
-        </div>
 </footer>
   <!-- Footer -->
  
