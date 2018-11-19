@@ -85,12 +85,29 @@
 
 <!-- Price input-->
 <div class="form-group">
-  <label class="col-md-18 control-label" for="price">Price</label>  
+  <label class="col-md-18 control-label" for="price">Price in BTC value!</label>  
   <div class="col-md-18">
-  <input id="price" name="price" placeholder="Input proce" class="form-control input-md" required="" type="number">
-  <span class="help-block">Input price</span>  
-  </div>
+  <input id="price" name="price" placeholder="" class="form-control input-md" required="" type="number">
+  <span class="help-block">Input price</span>
+please copy this value and replace the oldest value! <div id="prices"></div>
 </div>
+
+
+  <div class="form-goup">
+  <label for="selection">Select list:</label>
+  <select class="form-control" id="selection">
+    <option name="dollars" id="dollars">usd dollars</option>
+    <option name="pounds" id="pounds">gb pounds</option>
+    <option name="euro" id="euro">euro</option>
+    <option name="pesos" id="pesos">argen pesos</option>
+  </select>
+</div>
+
+
+    
+
+
+</div>  
 
 <!-- Textarea -->
 <div class="form-group">
@@ -113,9 +130,44 @@
 </div>
 <script>
   function clickFunction(){
-   window.alert('remember that value change:  1 BTC = 5045 $ !!!');
+   window.alert('remember that you must to change in BTC currency');
 alert('great! print the buletin of transaction...');
+
   }
+
+ var testSelect = document.getElementById('selection'); 
+ testSelect.addEventListener('change', function() { //alert(this.value);
+var mySelect = document.getElementById('selection').value;
+var myPrice = document.getElementById('price').value;
+alert(myPrice+'  '+mySelect);
+
+
+if (mySelect=='usd dollars') {
+var btcUSD=parseInt((1/5512)*myPrice);
+document.getElementById('prices').innerHTML=btcUSD;
+alert('please replase this value '+btcUSD);
+
+} else if (mySelect=='gb pounds') {
+  var btcGB=parseInt((1/4291)*myPrice);
+document.getElementById('prices').innerHTML=btcGB;
+alert('please replase this value '+btcGB);
+
+} else if (mySelect=='euro') {
+var btcEU=parseInt((1/4830)*myPrice);
+document.getElementById('prices').innerHTML=btcEU;
+alert('please replase this value '+btcEU);
+
+
+}else if (mySelect=='argen pesos') {
+var btcPES=parseInt((1/197260)*myPrice);
+document.getElementById('prices').innerHTML=btcPES;
+alert('please replase this value '+btcGB);
+}
+ 
+else alert('error: you\'ve choisen a low value');
+
+  });
+//{}{}{}{}{}{}{}
 </script>
 </main>
 <hr>

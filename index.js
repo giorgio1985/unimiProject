@@ -5,8 +5,7 @@ var bodyP = require('body-parser');
 var Customs = require('./mongoose.js');             // <--- including nodejs libreries ...
 var myBlocks = require('./myBlock.js');
 var cryptoJs = require('crypto-js');
-//var request = require('request');
-//var btcPrice = require('./btcPrice.js');
+
 
 var bitAddress = null;
 const saldo = 5000;
