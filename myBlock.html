@@ -89,7 +89,7 @@
   <div class="col-md-18">
   <input id="price" name="price" placeholder="" class="form-control input-md" required="" type="number">
   <span class="help-block">Input price</span>
-please copy this value and replace the oldest value! <div id="prices"></div>
+please copy this value and replace above the oldest value! <div id="prices"></div>
 </div>
 
 
@@ -100,6 +100,12 @@ please copy this value and replace the oldest value! <div id="prices"></div>
     <option name="pounds" id="pounds">gb pounds</option>
     <option name="euro" id="euro">euro</option>
     <option name="pesos" id="pesos">argen pesos</option>
+    <option name="rand" id="rand">sa rand</option>
+    <option name="rublo" id="rublo">ru rublo</option>
+    <option name="yen" id="yen">yen</option>
+    <option name="cny" id="cny">cny</option>
+    <option name="cedi" id="cedi">cedi</option>
+    <option name="sui" id="sui">sui franco</option>
   </select>
 </div>
 
@@ -157,11 +163,40 @@ var btcEU=parseInt((1/4830)*myPrice);
 document.getElementById('prices').innerHTML=btcEU;
 alert('please replase this value '+btcEU);
 
-
-}else if (mySelect=='argen pesos') {
+} else if (mySelect=='argen pesos') {
 var btcPES=parseInt((1/197260)*myPrice);
 document.getElementById('prices').innerHTML=btcPES;
-alert('please replase this value '+btcGB);
+alert('please replase this value '+btcPES);
+
+} else if (mySelect=='sa rand') {
+var btcRAND=parseInt((1/64000)*myPrice);
+document.getElementById('prices').innerHTML=btcRAND;
+alert('please replase this value '+btcRAND);
+
+} else if (mySelect=='ru rublo') {
+var btcRUBLO=parseInt((1/3000000)*myPrice);
+document.getElementById('prices').innerHTML=btcRUBLO;
+alert('please replase this value '+btcRUBLO);
+
+} else if (mySelect=='yen') {
+var btcYEN=parseInt((1/510000)*myPrice);
+document.getElementById('prices').innerHTML=btcYEN;
+alert('please replase this value '+btcYEN);
+
+} else if (mySelect=='cny') {
+var btcCNY=parseInt((1/510000)*myPrice);
+document.getElementById('prices').innerHTML=btcCNY;
+alert('please replase this value '+btcCNY);
+
+} else if (mySelect=='cedi') {
+var btcCEDI=parseInt((1/22000)*myPrice);
+document.getElementById('prices').innerHTML=btcCEDI;
+alert('please replase this value '+btcCEDI);
+
+} else if (mySelect=='sui franco') {
+var btcSUI=parseInt((1/510000)*myPrice);
+document.getElementById('prices').innerHTML=btcSUI;
+alert('please replase this value '+btcSUI);
 }
  
 else alert('error: you\'ve choisen a low value');
