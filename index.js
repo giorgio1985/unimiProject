@@ -5,7 +5,14 @@ var bodyP = require('body-parser');
 var Customs = require('./mongoose.js');             // <--- including nodejs libreries ...
 var myBlocks = require('./myBlock.js');
 var cryptoJs = require('crypto-js');
+//-----------------------------------------------
 
+var ursa = require('ursa');
+var key = ursa.generatePrivateKey(1024, 65537);
+var privkeypem = key.toPrivatePem();
+var pubkeypem = key.toPublicPem();
+
+//-----------------------------------------------
 
 var bitAddress = null;
 const saldo = 5000;
@@ -22,7 +29,8 @@ app.use(bodyP.json());
 app.get('/', function(req, res){
 	res.sendFile(__dirname +'/'+ 'index.html', function(err, res){
     if (err) throw err;
-
+console.log(privkeypem.toString('ascii'));
+console.log(pubkeypem.toString('ascii'));
    /* request({
   url: "http://blockchain.info/stats?format=json",
   json: true
@@ -65,7 +73,8 @@ app.post('/login', function(req, res){  // <--- app.post start **** ************
   dbo.collection("customs").find(query).toArray(function(err, result) {
   if (err) throw err;
   if (bitAddress) {
- console.log('bit address funziona    '+ email+ '  '+ pass+ '  '+ bitAddress+'  ' +timestamp);
+ console.log('bit address funziona    '+ email+ '  '+ pass+ '  '+ bitAddress+'  ' +timestamp+'    ');
+ console.log('La chiave pubblica generata:   '+ pubkeypem.toString('ascii'));
 
 
    var customs=new Customs({                //  <--- customs schema ...
