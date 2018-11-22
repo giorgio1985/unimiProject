@@ -134,15 +134,21 @@ MongoClient.connect(url, function(err, db) {
 if (err) throw err;
 console.log('penultima funzione ... ---->' + (results.id) + '  penultimo hash -----> '+  (results.index)+ '  '+(results.transaction));
 
+dbo.collection("customs").findOne({}, {sort: {bitAddress: -1}, limit: 1}, function(err, result) { /////////////////////////////////////
+if (err) throw err;
+
+console.log('Last bit address: '+ result.bitAddress);
 
 
 var exHash = results.index;
 var exTrans = results.transaction;
 var balance = Number(exTrans) + Number(price);
+var myAddress = result.bitAddress;
 
     var blockchains = new myBlocks({
     index: hash,
-    previous:exHash,
+    previous: exHash,
+    address: myAddress,
     transaction: price,
     Balance: balance,
     detail: detail,
@@ -196,7 +202,7 @@ fs.appendFile('costructor.html', JSON.stringify({transaction: req.body.price, da
     db.close();
   });
 }); 
-    });   });
+    });   });    });//////////////////////////
 res.redirect('/myBlock');
 });
 

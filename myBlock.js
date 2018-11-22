@@ -7,6 +7,7 @@ var myBlocks = new Schema({
 	id: {type: Number, AutoIncrement: true ,required: false},
     index: String,
 	previous: String,
+	address: String,
 	transaction: Number,
 	Balance: Number,
 	detail: String,
