@@ -11,7 +11,7 @@ var myBlocks = new Schema({
 	transaction: Number,
 	Balance: Number,
 	detail: String,
-	timeStamp: Date
+	data: Date
 });
 
 myBlocks.plugin(AutoIncrement, {inc_field: 'id'});
