@@ -110,10 +110,11 @@ app.post('/blocker', function(req, res){            // <--- app.post start *****
   var name=req.body.nome;
   var title=req.body.titolo;
   var price=req.body.price;
+  var btcAddress=req.body.address;
   var detail=req.body.detail;
   var timestamp=Date();
 
-  var string=name+title+price+detail+timestamp;
+  var string=name+title+price+btcAddress+detail+timestamp;
   
   var hash = cryptoJs.SHA256(string).toString();
   console.log(hash);
@@ -148,7 +149,8 @@ var myAddress = result.bitAddress;
     var blockchains = new myBlocks({
     index: hash,
     previous: exHash,
-    address: myAddress,
+    myAddress: myAddress,
+    btcAddress: btcAddress,
     transaction: price,
     Balance: balance,
     detail: detail,
