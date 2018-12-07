@@ -150,7 +150,7 @@ var myAddress = result.bitAddress;
     index: hash,
     previous: exHash,
     myAddress: myAddress,
-    btcAddress: btcAddress,
+    btcAddressFriends: btcAddress,
     transaction: price,
     Balance: balance,
     detail: detail,

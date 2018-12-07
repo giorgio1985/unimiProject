@@ -8,7 +8,7 @@ var myBlocks = new Schema({
     index: String,
 	previous: String,
 	myAddress: String,
-	btcAddress: String,
+	btcAddressFriends: String,
 	transaction: Number,
 	Balance: Number,
 	detail: String,
