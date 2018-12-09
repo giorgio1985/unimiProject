@@ -113,9 +113,9 @@ please copy this value and replace above the oldest value! <div id="prices"></di
       
 <!--My BTC address-->
 <div class="form-group">
-  <label class="col-md-18 control-label" for="detail">submit</label>
+  <label class="col-md-18 control-label" for="detail">MY BTC Address</label>
   <div class="col-md-18">                     
-    <button class="btn btn-primary" type="submit" onclick="">Button</button>
+    <button class="btn btn-primary" type="submit" id="btcFunction" onclick="">Your BTC Address</button>
   
 </div>
 <!-- Address input-->
@@ -147,17 +147,33 @@ please copy this value and replace above the oldest value! <div id="prices"></di
   </div>
 </div>
 <script>
-  /* api key  QkiWud9cpmgloq9vQ-7S5UBesi8EYo9t   
+ 
+ 
+  $("#btcFunction").on("click", function(){
+    alert("caaaaaaaaaaaaazzzzzzzooo");
+btcFunction();
+  });
 
 
-$.ajax({
+function btcFunction(){
+  $.ajax({
           url: "https://api.mlab.com/api/1/databases/database001/collections/blockchains?apiKey=QkiWud9cpmgloq9vQ-7S5UBesi8EYo9t",
           type: "POST",
-          data: JSON.stringify( object ),
-          contentType: "application/json"
-        }).done(function( msg ) {
-          console.log(msg);
+          data: JSON.stringify( url ),
+          contentType: "application/json",
+          success: function(){
+             alert("porco diavolooooo");
+          },
+          error: function(){
+            alert("erroreeeeeeee");
+          }
         });
+        alert("minkiaaaaaaaaaaaaaa");
+
+
+}
+      
+  /* api key  QkiWud9cpmgloq9vQ-7S5UBesi8EYo9t  
 
 
 // links .. https://docs.mlab.com/data-api/
