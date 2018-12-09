@@ -110,13 +110,13 @@ please copy this value and replace above the oldest value! <div id="prices"></di
 </div>
 
 </div>  
-      
-<!--My BTC address-->
+      <!--
+My BTC address
 <div class="form-group">
   <label class="col-md-18 control-label" for="detail">MY BTC Address</label>
   <div class="col-md-18">                     
     <button class="btn btn-primary" type="submit" id="btcFunction" onclick="">Your BTC Address</button>
-  
+  -->
 </div>
 <!-- Address input-->
 <div class="form-group">
@@ -149,46 +149,52 @@ please copy this value and replace above the oldest value! <div id="prices"></di
 <script>
  
  
-  $("#btcFunction").on("click", function(){
-    alert("caaaaaaaaaaaaazzzzzzzooo");
-btcFunction();
-  });
+  /*
+  */
 
 
-function btcFunction(){
-  $.ajax({
-          url: "https://api.mlab.com/api/1/databases/database001/collections/blockchains?apiKey=QkiWud9cpmgloq9vQ-7S5UBesi8EYo9t",
-          type: "POST",
-          data: JSON.stringify( url ),
-          contentType: "application/json",
-          success: function(){
-             alert("porco diavolooooo");
-          },
-          error: function(){
-            alert("erroreeeeeeee");
-          }
-        });
-        alert("minkiaaaaaaaaaaaaaa");
-
-
-}
       
   /* api key  QkiWud9cpmgloq9vQ-7S5UBesi8EYo9t  
 
+//url: "https://api.mlab.com/api/1/databases/database001/collections/blockchains?apiKey=QkiWud9cpmgloq9vQ-7S5UBesi8EYo9",
 
 // links .. https://docs.mlab.com/data-api/
 // links .. http://etoxin.net/blog/2013/07/09/mongodb-and-jquery-in-10-minutes/
 
 
 
-
-
   */
+
+  $("#selection").on("change", function(){
+   clickFunction();
+
+    alert("caaaaaaaaaaaaazzzzzzzooo");
+
+  });
+
+  function btcFunction(event){
+  $.ajax({
+          url: "myBlock.html",
+          type: "POST",
+          data:  event,
+          contentType: "html",
+          context: document.body,
+          success: function(data){
+            $("#price").html(data);
+             alert("yeeeeeeeeeeeeeeeahhhhhhhhh" + data);
+          },
+          error: function(){
+            console.log("erroreeeeeeeeeeeeeeeeeeeeeeee")
+          }
+        });
+
+
+}
   function clickFunction(){
    window.alert('remember that you must to change in BTC currency');
 alert('great! print the buletin of transaction...');
 
-  }
+  //}
 
  var testSelect = document.getElementById('selection'); 
  testSelect.addEventListener('change', function() { //alert(this.value);
@@ -200,57 +206,67 @@ alert(myPrice+'  '+mySelect);
 if (mySelect=='usd dollars') {
 var btcUSD=parseInt((1/5512)*myPrice);
 document.getElementById('prices').innerHTML=btcUSD;
+btcFunction(btcUSD);
 alert('please replase this value '+btcUSD);
 
 } else if (mySelect=='gb pounds') {
   var btcGB=parseInt((1/4291)*myPrice);
 document.getElementById('prices').innerHTML=btcGB;
+btcFunction(btcGB);
 alert('please replase this value '+btcGB);
 
 } else if (mySelect=='euro') {
 var btcEU=parseInt((1/4830)*myPrice);
 document.getElementById('prices').innerHTML=btcEU;
+btcFunction(btcEU);
 alert('please replase this value '+btcEU);
 
 } else if (mySelect=='argen pesos') {
 var btcPES=parseInt((1/197260)*myPrice);
 document.getElementById('prices').innerHTML=btcPES;
+btcFunction(btcPES);
 alert('please replase this value '+btcPES);
 
 } else if (mySelect=='sa rand') {
 var btcRAND=parseInt((1/64000)*myPrice);
 document.getElementById('prices').innerHTML=btcRAND;
+btcFunction(btcRAND);
 alert('please replase this value '+btcRAND);
 
 } else if (mySelect=='ru rublo') {
 var btcRUBLO=parseInt((1/3000000)*myPrice);
 document.getElementById('prices').innerHTML=btcRUBLO;
+btcFunction(btcRUBLO);
 alert('please replase this value '+btcRUBLO);
 
 } else if (mySelect=='yen') {
 var btcYEN=parseInt((1/510000)*myPrice);
 document.getElementById('prices').innerHTML=btcYEN;
+btcFunction(btcYEN);
 alert('please replase this value '+btcYEN);
 
 } else if (mySelect=='cny') {
 var btcCNY=parseInt((1/510000)*myPrice);
 document.getElementById('prices').innerHTML=btcCNY;
+btcFunction(btcCNY);
 alert('please replase this value '+btcCNY);
 
 } else if (mySelect=='cedi') {
 var btcCEDI=parseInt((1/22000)*myPrice);
 document.getElementById('prices').innerHTML=btcCEDI;
+btcFunction(btcCEDI);
 alert('please replase this value '+btcCEDI);
 
 } else if (mySelect=='sui franco') {
 var btcSUI=parseInt((1/510000)*myPrice);
 document.getElementById('prices').innerHTML=btcSUI;
+btcFunction(btcSUI);
 alert('please replase this value '+btcSUI);
 }
  
 else alert('error: you\'ve choisen a low value');
 
-  });
+  });    }
 //{}{}{}{}{}{}{}
 </script>
 </main>
