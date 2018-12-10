@@ -24,11 +24,9 @@
 
     <!-- Custom styles for this template -->
     <link href="navbar-top-fixed.css" rel="stylesheet">
-  
-<!--
- 
+
  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>  -->
+ <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
 </head>
 <!------ Include the above in your HEAD tag ---------->
 <body>
@@ -60,7 +58,7 @@
 
 <div class="container">
   <div class="row">
-    <form  method="post" action="/blocker">
+    <form  method="POST" action="/blocker">
 
 <!-- Form Name -->
 
@@ -87,9 +85,10 @@
 <div class="form-group">
   <label class="col-md-18 control-label" for="price">Price in BTC value!</label>  
   <div class="col-md-18">
-  <input id="price" name="price" placeholder="" class="form-control input-md" required="" type="number">
+  <input id="price" ondrop="drop(event)" ondragover="allowDrop(event)" name="price" placeholder="" class="form-control input-md" required="" type="">
   <span class="help-block">Input price</span>
-please copy this value and replace above the oldest value! <div id="prices"></div>
+<div id="prices" draggable="true" ondragstart="drag(event)">Empty</div>
+<div>lease copy this value and replace above the oldest value! </div>
 </div>
 
 
@@ -107,16 +106,7 @@ please copy this value and replace above the oldest value! <div id="prices"></di
     <option name="cedi" id="cedi">cedi</option>
     <option name="sui" id="sui">sui franco</option>
   </select>
-</div>
 
-</div>  
-      <!--
-My BTC address
-<div class="form-group">
-  <label class="col-md-18 control-label" for="detail">MY BTC Address</label>
-  <div class="col-md-18">                     
-    <button class="btn btn-primary" type="submit" id="btcFunction" onclick="">Your BTC Address</button>
-  -->
 </div>
 <!-- Address input-->
 <div class="form-group">
@@ -147,7 +137,20 @@ My BTC address
   </div>
 </div>
 <script>
- 
+ function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev, el) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.append(document.getElementById(data));
+  //$("#prices").html(data);
+}
  
   /*
   */
@@ -164,33 +167,6 @@ My BTC address
 
 
   */
-
-  $("#selection").on("change", function(){
-   clickFunction();
-
-    alert("caaaaaaaaaaaaazzzzzzzooo");
-
-  });
-
-  function btcFunction(event){
-  $.ajax({
-          url: "myBlock.html",
-          type: "POST",
-          data:  event,
-          contentType: "html",
-          context: document.body,
-          success: function(data){
-            $("#price").html(data);
-             alert("yeeeeeeeeeeeeeeeahhhhhhhhh" + data);
-          },
-          error: function(){
-            console.log("erroreeeeeeeeeeeeeeeeeeeeeeee")
-          }
-        });
-
-
-}
-  function clickFunction(){
    window.alert('remember that you must to change in BTC currency');
 alert('great! print the buletin of transaction...');
 
@@ -200,74 +176,65 @@ alert('great! print the buletin of transaction...');
  testSelect.addEventListener('change', function() { //alert(this.value);
 var mySelect = document.getElementById('selection').value;
 var myPrice = document.getElementById('price').value;
-alert(myPrice+'  '+mySelect);
+alert(myPrice+'  '+mySelect);  
 
 
 if (mySelect=='usd dollars') {
 var btcUSD=parseInt((1/5512)*myPrice);
 document.getElementById('prices').innerHTML=btcUSD;
-btcFunction(btcUSD);
 alert('please replase this value '+btcUSD);
 
 } else if (mySelect=='gb pounds') {
   var btcGB=parseInt((1/4291)*myPrice);
 document.getElementById('prices').innerHTML=btcGB;
-btcFunction(btcGB);
 alert('please replase this value '+btcGB);
 
 } else if (mySelect=='euro') {
 var btcEU=parseInt((1/4830)*myPrice);
 document.getElementById('prices').innerHTML=btcEU;
-btcFunction(btcEU);
 alert('please replase this value '+btcEU);
 
 } else if (mySelect=='argen pesos') {
 var btcPES=parseInt((1/197260)*myPrice);
 document.getElementById('prices').innerHTML=btcPES;
-btcFunction(btcPES);
 alert('please replase this value '+btcPES);
 
 } else if (mySelect=='sa rand') {
 var btcRAND=parseInt((1/64000)*myPrice);
 document.getElementById('prices').innerHTML=btcRAND;
-btcFunction(btcRAND);
 alert('please replase this value '+btcRAND);
 
 } else if (mySelect=='ru rublo') {
 var btcRUBLO=parseInt((1/3000000)*myPrice);
 document.getElementById('prices').innerHTML=btcRUBLO;
-btcFunction(btcRUBLO);
 alert('please replase this value '+btcRUBLO);
 
 } else if (mySelect=='yen') {
 var btcYEN=parseInt((1/510000)*myPrice);
 document.getElementById('prices').innerHTML=btcYEN;
-btcFunction(btcYEN);
 alert('please replase this value '+btcYEN);
 
 } else if (mySelect=='cny') {
 var btcCNY=parseInt((1/510000)*myPrice);
 document.getElementById('prices').innerHTML=btcCNY;
-btcFunction(btcCNY);
 alert('please replase this value '+btcCNY);
 
 } else if (mySelect=='cedi') {
 var btcCEDI=parseInt((1/22000)*myPrice);
 document.getElementById('prices').innerHTML=btcCEDI;
-btcFunction(btcCEDI);
 alert('please replase this value '+btcCEDI);
 
 } else if (mySelect=='sui franco') {
 var btcSUI=parseInt((1/510000)*myPrice);
 document.getElementById('prices').innerHTML=btcSUI;
-btcFunction(btcSUI);
 alert('please replase this value '+btcSUI);
-}
+}  
+
+
  
 else alert('error: you\'ve choisen a low value');
 
-  });    }
-//{}{}{}{}{}{}{}
+          });  
 </script>
 </main>
 <hr>
