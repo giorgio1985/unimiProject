@@ -85,11 +85,14 @@
 <div class="form-group">
   <label class="col-md-18 control-label" for="price">Price in BTC value!</label>  
   <div class="col-md-18">
-  <input id="price" ondrop="drop(event)" ondragover="allowDrop(event)" name="price" placeholder="" class="form-control input-md" required="" type="">
+  <input id="price" ondrop="drop(event);" ondragover="allowDrop(event);" name="price" placeholder="0" class="form-control input-md" required="true" type="number">
   <span class="help-block">Input price</span>
-<div id="prices" draggable="true" ondragstart="drag(event)">Empty</div>
-<div>lease copy this value and replace above the oldest value! </div>
-</div>
+<div id="prices" draggable="true" ondragstart="drag(event);">Empty
+<div id="mytext"> lease copy this value and replace above the oldest value!
+ </div>
+  </div>
+   </div>
+    </div>
 
 
   <div class="form-goup">
@@ -128,7 +131,7 @@
 <div class="form-group">
   <label class="col-md-18 control-label" for="detail">submit</label>
   <div class="col-md-18">                     
-    <button class="btn btn-primary" type="submit" onclick="clickFunction()">Button</button>
+    <button class="btn btn-primary" type="submit">Button</button>
   </div>
 </div>
 
@@ -137,40 +140,27 @@
   </div>
 </div>
 <script>
+
+ 
+ 
  function allowDrop(ev) {
   ev.preventDefault();
 }
 
 function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
+  ev.dataTransfer.setData("text/plain", ev.target.id);
 }
 
-function drop(ev, el) {
+function drop(ev) {
   ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  ev.target.append(document.getElementById(data));
+  var data = ev.dataTransfer.getData("text/plain");
+  ev.target.appendChild(document.getElementById(data));
   //$("#prices").html(data);
 }
- 
-  /*
-  */
-
-
       
-  /* api key  QkiWud9cpmgloq9vQ-7S5UBesi8EYo9t  
-
-//url: "https://api.mlab.com/api/1/databases/database001/collections/blockchains?apiKey=QkiWud9cpmgloq9vQ-7S5UBesi8EYo9",
-
-// links .. https://docs.mlab.com/data-api/
-// links .. http://etoxin.net/blog/2013/07/09/mongodb-and-jquery-in-10-minutes/
-
-
-
-  */
+  
    window.alert('remember that you must to change in BTC currency');
 alert('great! print the buletin of transaction...');
-
-  //}
 
  var testSelect = document.getElementById('selection'); 
  testSelect.addEventListener('change', function() { //alert(this.value);
@@ -247,10 +237,10 @@ else alert('error: you\'ve choisen a low value');
   <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>    -->
 
   
 </body>
