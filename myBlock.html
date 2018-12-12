@@ -59,6 +59,7 @@
 
 <div class="container">
   <div class="row">
+    <div ng-app="myApp" ng-controller="myCtrl">  <!-- ANGULAR CONTROLLER   -->
     <form  method="POST" action="/blocker">
 
 <!-- Form Name -->
@@ -86,9 +87,9 @@
 <div class="form-group">
   <label class="col-md-18 control-label" for="price">Price in BTC value!</label>  
   <div class="col-md-18">
-  <input id="price" ondrop="drop(event);" ondragover="allowDrop(event);" name="price" placeholder="0" class="form-control input-md" required="true" type="number">
+  <input id="price" name="price" placeholder="0" class="form-control input-md" required="true" type="number">
   <span class="help-block">Input price</span>
-<div id="prices" draggable="true" ondragstart="drag(event);">Empty
+<div id="prices">Empty
 <div id="mytext"> lease copy this value and replace above the oldest value!
  </div>
   </div>
@@ -96,22 +97,22 @@
     </div>
 
 
-  <div class="form-goup">
+  <div class="form-goup" class="form-goup">
   <label for="selection">Select list:</label>
   <select class="form-control" id="selection">
-    <option name="dollars" id="dollars">usd dollars</option>
-    <option name="pounds" id="pounds">gb pounds</option>
-    <option name="euro" id="euro">euro</option>
-    <option name="pesos" id="pesos">argen pesos</option>
-    <option name="rand" id="rand">sa rand</option>
-    <option name="rublo" id="rublo">ru rublo</option>
-    <option name="yen" id="yen">yen</option>
-    <option name="cny" id="cny">cny</option>
-    <option name="cedi" id="cedi">cedi</option>
-    <option name="sui" id="sui">sui franco</option>
+    <option name="dollars" ng-model="coin" id="dollars">usd dollars</option>
+    <option name="pounds" ng-model="coin" id="pounds">gb pounds</option>
+    <option name="euro" ng-model="coin" id="euro">euro</option>
+    <option name="pesos" ng-model="coin" id="pesos">argen pesos</option>
+    <option name="rand" ng-model="coin" id="rand">sa rand</option>
+    <option name="rublo" ng-model="coin" id="rublo">ru rublo</option>
+    <option name="yen" ng-model="coin" id="yen">yen</option>
+    <option name="cny" ng-model="coin" id="cny">cny</option>
+    <option name="cedi" ng-model="coin" id="cedi">cedi</option>
+    <option name="sui" ng-model="coin" id="sui">sui franco</option>
   </select>
 
-</div>
+
 <!-- Address input-->
 <div class="form-group">
   <label class="col-md-18 control-label" for="select-address">Address</label>  
@@ -138,12 +139,15 @@
 
 </fieldset>
 </form>
+</div>    <!--END ANGULAR -->
   </div>
 </div>
 <script>
 
  
- 
+ /*
+  ondrop="drop(event);" ondragover="allowDrop(event);"
+  draggable="true" ondragstart="drag(event);"
  function allowDrop(ev) {
   ev.preventDefault();
 }
@@ -158,10 +162,10 @@ function drop(ev) {
   ev.target.appendChild(document.getElementById(data));
   //$("#prices").html(data);
 }
-      
+      */
   
-   window.alert('remember that you must to change in BTC currency');
-alert('great! print the buletin of transaction...');
+  /* window.alert('remember that you must to change in BTC currency');
+alert('great! print the buletin of transaction...');*/
 
  var testSelect = document.getElementById('selection'); 
  testSelect.addEventListener('change', function() { //alert(this.value);
@@ -170,61 +174,74 @@ var myPrice = document.getElementById('price').value;
 alert(myPrice+'  '+mySelect);  
 
 
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+
 if (mySelect=='usd dollars') {
 var btcUSD=parseInt((1/5512)*myPrice);
 document.getElementById('prices').innerHTML=btcUSD;
+$scope.coin=btcUSD;
 alert('please replase this value '+btcUSD);
 
 } else if (mySelect=='gb pounds') {
   var btcGB=parseInt((1/4291)*myPrice);
 document.getElementById('prices').innerHTML=btcGB;
+$scope.coin=btcGB;
 alert('please replase this value '+btcGB);
 
 } else if (mySelect=='euro') {
 var btcEU=parseInt((1/4830)*myPrice);
 document.getElementById('prices').innerHTML=btcEU;
+$scope.coin=btcEU;
 alert('please replase this value '+btcEU);
 
 } else if (mySelect=='argen pesos') {
 var btcPES=parseInt((1/197260)*myPrice);
 document.getElementById('prices').innerHTML=btcPES;
+$scope.coin=btcPES;
 alert('please replase this value '+btcPES);
 
 } else if (mySelect=='sa rand') {
 var btcRAND=parseInt((1/64000)*myPrice);
 document.getElementById('prices').innerHTML=btcRAND;
+$scope.coin=btcRAND;
 alert('please replase this value '+btcRAND);
 
 } else if (mySelect=='ru rublo') {
 var btcRUBLO=parseInt((1/3000000)*myPrice);
 document.getElementById('prices').innerHTML=btcRUBLO;
+$scope.coin=btcRUBLO;
 alert('please replase this value '+btcRUBLO);
 
 } else if (mySelect=='yen') {
 var btcYEN=parseInt((1/510000)*myPrice);
 document.getElementById('prices').innerHTML=btcYEN;
+$scope.coin=btcYEN;
 alert('please replase this value '+btcYEN);
 
 } else if (mySelect=='cny') {
 var btcCNY=parseInt((1/510000)*myPrice);
 document.getElementById('prices').innerHTML=btcCNY;
+$scope.coin=btcCNY;
 alert('please replase this value '+btcCNY);
 
 } else if (mySelect=='cedi') {
 var btcCEDI=parseInt((1/22000)*myPrice);
 document.getElementById('prices').innerHTML=btcCEDI;
+$scope.coin=btcCEDI;
 alert('please replase this value '+btcCEDI);
 
 } else if (mySelect=='sui franco') {
 var btcSUI=parseInt((1/510000)*myPrice);
 document.getElementById('prices').innerHTML=btcSUI;
+$scope.coin=btcSUI;
 alert('please replase this value '+btcSUI);
 }  
 
 
  
 else alert('error: you\'ve choisen a low value');
-
+});
           });  
 </script>
 </main>
