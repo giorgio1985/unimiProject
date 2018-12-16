@@ -5,6 +5,7 @@ var bodyP = require('body-parser');
 var Customs = require('./mongoose.js');             // <--- including nodejs libreries ...
 var myBlocks = require('./myBlock.js');
 var cryptoJs = require('crypto-js');
+var nodemailer = require('nodemailer');
 //-----------------------------------------------
 
 var ursa = require('ursa');
@@ -62,8 +63,33 @@ app.post('/login', function(req, res){  // <--- app.post start **** ************
 
   var bitAddress= bitHash;
   var timestamp=Date();
+	
+	/*------------------------------------------------------------------------------------*/
 
-    //db.close();
+    var myMailer = nodemailer.createTransport({
+  service: 'yahoo',
+  auth: {
+    user: 'g.adonoo@yahoo.it',
+    pass: 'S*'
+  }
+});
+
+var mailOptions = {
+  from: 'g.adonoo@yahoo.it',
+  to: email,
+  subject: 'Sending Email using login app',
+  text: 'Are you tryng to enter the B-chain application?!'
+};
+
+myMailer.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+
+  }
+});
+
   /*-------------------------------------------------------------------------------------*/
 
   MongoClient.connect(url, function(err, db) {   //  <------ request infos saved in db via login! and put on inside the collection "customs"...
