@@ -8,9 +8,9 @@
   <meta name="autor" content="">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-  <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="sticky-footer-navbar.css" rel="stylesheet">
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link rel="stylesheet" href="../../dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="sticky-footer-navbar.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" id="bootstrap-css">
   <link rel="stylesheet" type="text/css" href="./index.css">
   <link rel="stylesheet" type="text/css" href="./footer.css">
   
@@ -59,16 +59,16 @@
 
 <div class="container">
   <div class="row">
-    <div ng-app="myApp" ng-controller="myCtrl">  <!-- ANGULAR CONTROLLER   -->
-    <form  method="POST" action="/blocker">
+    <!-- ANGULAR CONTROLLER   -->
+    <form  ng-app="myApp" ng-controller="myCtrl" method="POST" action="/blocker">
 
 <!-- Form Name -->
 
 
 <!-- Name input-->
 <div class="form-group">
-  <label class="col-md-18 control-label" for="name">name</label>  
-  <div class="col-md-18">
+  <label class="col-md-12 control-label" for="name">name</label>  
+  <div class="col-md-12">
   <input id="nome" name="nome" placeholder="Input name" class="form-control input-md" required="" type="text">
   <span class="help-block">Pleae type name</span>  
   </div>
@@ -76,8 +76,8 @@
 
 <!-- Title input-->
 <div class="form-group">
-  <label class="col-md-18 control-label" for="title">Title</label>  
-  <div class="col-md-18">
+  <label class="col-md-12 control-label" for="title">Title</label>  
+  <div class="col-md-12">
   <input id="titolo" name="titolo" placeholder="Input title" class="form-control input-md" required="" type="text">
   <span class="help-block">Please type title</span>  
   </div>
@@ -85,8 +85,8 @@
 
 <!-- Price input-->
 <div class="form-group">
-  <label class="col-md-18 control-label" for="price">Price in BTC value!</label>  
-  <div class="col-md-18">
+  <label class="col-md-12 control-label" for="price">Price in BTC value!</label>  
+  <div class="col-md-12">
   <input id="price" name="price" placeholder="0" class="form-control input-md" required="true" type="number">
   <span class="help-block">Input price</span>
 <div id="prices">Empty
@@ -100,23 +100,23 @@
   <div class="form-goup" class="form-goup">
   <label for="selection">Select list:</label>
   <select class="form-control" id="selection">
-    <option name="dollars" ng-model="coin" id="dollars">usd dollars</option>
-    <option name="pounds" ng-model="coin" id="pounds">gb pounds</option>
-    <option name="euro" ng-model="coin" id="euro">euro</option>
-    <option name="pesos" ng-model="coin" id="pesos">argen pesos</option>
-    <option name="rand" ng-model="coin" id="rand">sa rand</option>
-    <option name="rublo" ng-model="coin" id="rublo">ru rublo</option>
-    <option name="yen" ng-model="coin" id="yen">yen</option>
-    <option name="cny" ng-model="coin" id="cny">cny</option>
-    <option name="cedi" ng-model="coin" id="cedi">cedi</option>
-    <option name="sui" ng-model="coin" id="sui">sui franco</option>
+    <option name="dollars" id="dollars">usd dollars</option>
+    <option name="pounds" id="pounds">gb pounds</option>
+    <option name="euro" id="euro">euro</option>
+    <option name="pesos" id="pesos">argen pesos</option>
+    <option name="rand" id="rand">sa rand</option>
+    <option name="rublo" id="rublo">ru rublo</option>
+    <option name="yen" id="yen">yen</option>
+    <option name="cny" id="cny">cny</option>
+    <option name="cedi" id="cedi">cedi</option>
+    <option name="sui" id="sui">sui franco</option>
   </select>
 
 
 <!-- Address input-->
 <div class="form-group">
-  <label class="col-md-18 control-label" for="select-address">Address</label>  
-  <div class="col-md-18">
+  <label class="col-md-12 control-label" for="select-address">Address</label>  
+  <div class="col-md-12">
   <input id="address" name="address" placeholder="Enter BTC Address" class="form-control input-md" required="" type="text">
   <span class="help-block">Please Enter BTC Address that you want to send!</span>  
   </div>
@@ -124,24 +124,25 @@
 
 <!-- Textarea -->
 <div class="form-group">
-  <label class="col-md-18 control-label" for="detail">Detail</label>
-  <div class="col-md-18">                     
+  <label class="col-md-12 control-label" for="detail">Detail</label>
+  <div class="col-md-12">                     
     <textarea class="form-control" id="detail" name="detail" type="text"></textarea>
   </div>
 </div>
 
 <div class="form-group">
-  <label class="col-md-18 control-label" for="detail">submit</label>
-  <div class="col-md-18">                     
+  <label class="col-md-12 control-label" for="detail">submit</label>
+  <div class="col-md-12">                     
     <button class="btn btn-primary" type="submit">Button</button>
   </div>
 </div>
 
 </fieldset>
-</form>
-</div>    <!--END ANGULAR -->
+</form>   <!--END ANGULAR -->
   </div>
 </div>
+
+
 <script>
 
  
@@ -174,114 +175,71 @@ var myPrice = document.getElementById('price').value;
 alert(myPrice+'  '+mySelect);  
 
 
-var app = angular.module('myApp', []);
-app.controller('myCtrl', function($scope) {
-
 if (mySelect=='usd dollars') {
 var btcUSD=parseInt((1/5512)*myPrice);
 document.getElementById('prices').innerHTML=btcUSD;
-$scope.coin=btcUSD;
 alert('please replase this value '+btcUSD);
 
 } else if (mySelect=='gb pounds') {
   var btcGB=parseInt((1/4291)*myPrice);
 document.getElementById('prices').innerHTML=btcGB;
-$scope.coin=btcGB;
 alert('please replase this value '+btcGB);
 
 } else if (mySelect=='euro') {
 var btcEU=parseInt((1/4830)*myPrice);
 document.getElementById('prices').innerHTML=btcEU;
-$scope.coin=btcEU;
 alert('please replase this value '+btcEU);
 
 } else if (mySelect=='argen pesos') {
 var btcPES=parseInt((1/197260)*myPrice);
 document.getElementById('prices').innerHTML=btcPES;
-$scope.coin=btcPES;
 alert('please replase this value '+btcPES);
 
 } else if (mySelect=='sa rand') {
 var btcRAND=parseInt((1/64000)*myPrice);
 document.getElementById('prices').innerHTML=btcRAND;
-$scope.coin=btcRAND;
 alert('please replase this value '+btcRAND);
 
 } else if (mySelect=='ru rublo') {
 var btcRUBLO=parseInt((1/3000000)*myPrice);
 document.getElementById('prices').innerHTML=btcRUBLO;
-$scope.coin=btcRUBLO;
 alert('please replase this value '+btcRUBLO);
 
 } else if (mySelect=='yen') {
 var btcYEN=parseInt((1/510000)*myPrice);
 document.getElementById('prices').innerHTML=btcYEN;
-$scope.coin=btcYEN;
 alert('please replase this value '+btcYEN);
 
 } else if (mySelect=='cny') {
 var btcCNY=parseInt((1/510000)*myPrice);
 document.getElementById('prices').innerHTML=btcCNY;
-$scope.coin=btcCNY;
 alert('please replase this value '+btcCNY);
 
 } else if (mySelect=='cedi') {
 var btcCEDI=parseInt((1/22000)*myPrice);
 document.getElementById('prices').innerHTML=btcCEDI;
-$scope.coin=btcCEDI;
 alert('please replase this value '+btcCEDI);
 
 } else if (mySelect=='sui franco') {
 var btcSUI=parseInt((1/510000)*myPrice);
 document.getElementById('prices').innerHTML=btcSUI;
-$scope.coin=btcSUI;
 alert('please replase this value '+btcSUI);
 }  
-
-
- 
 else alert('error: you\'ve choisen a low value');
 });
-          });  
+        
 </script>
 </main>
 <hr>
-<!--  Footer -->
-  <section id="footer">
-    <div class="container">
-      <div class="row text-center text-xs-center text-sm-left text-md-left">
-        <div class="col-xs-12 col-sm-4 col-md-4">
-          <h5>Quick links</h5>
-          <ul class="list-unstyled quick-links">
-            <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Home</a></li>
-            <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>About</a></li>
-            <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
-            <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
-            <li><a href="https://wwwe.sunlimetech.com" title="Design and developed by"><i class="fa fa-angle-double-right"></i>Imprint</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
-          <ul class="list-unstyled list-inline social text-center">
-            <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-facebook"></i></a></li>
-            <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-twitter"></i></a></li>
-            <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-instagram"></i></a></li>
-            <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-google-plus"></i></a></li>
-            <li class="list-inline-item"><a href="javascript:void();" target="_blank"><i class="fa fa-envelope"></i></a></li>
-          </ul>
-        </div>
-        </hr>
-      </div>  
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
-          <p><u><a href="https://www.nationaltransaction.com/">National Transaction Corporation</a></u> is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]</p>
-          <p class="h6">&copy All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">Sunlimetech</a></p>
-        </div>
-        </hr>
-      </div>  
-    </div>
-  </section>
+<footer class="footer">
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2018 Copyright:
+    <a href="#"> B-Chain </a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
  
  
   <!-- Bootstrap core JavaScript
