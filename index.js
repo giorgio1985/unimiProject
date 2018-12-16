@@ -181,19 +181,72 @@ MongoClient.connect(url, function(err, db) {    // <--- OUTPUT TRANSACTION ...
   dbo.collection("blockchain").find(query).toArray(function(err, result) {
   if (err) throw err;
   
-fs.appendFile('costructor.html', JSON.stringify({transaction: req.body.price, data: Date(), index: hash}), 'utf8' ,function (err) {
+fs.writeFile('costructor.html',  
+'<!DOCTYPE html>'+
+'<head>'+
+'<meta charset="utf-8"/>'+
+'<meta name="viewport" content="width=device-width, initial-scale=1">'+
+  '<meta name="description" content="">'+
+  '<meta name="autor" content="">'+
+
+  '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">'+
+  '<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" id="bootstrap-css">'+
+  '<link rel="stylesheet" href="../../dist/css/bootstrap.min.css">'+
+  '<link rel="stylesheet" href="sticky-footer-navbar.css">'+
+  '<link rel="stylesheet" type="text/css" href="index.css">'+
+  '<link rel="stylesheet" type="text/css" href="footer.css">'+
+
+  '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>'+
+  '<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>'+
+  '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>'+
+  '<script src="./unimiProject/jquery.min.js"></script>'+
+  
+ 
+'<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>'+
+'<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>'+
+//'<scrtipt>'+ function myFunction(){alert("ciaoooooooooooooo")}+'</scrtipt>'+
+
+    '<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">'+
+
+    '+<link href="navbar-top-fixed.css" rel="stylesheet">'+
+'<title>Welcome to B-Chain transaction!</title>'+
+'</head>'+ 
+'<body>'+
+'<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">'+
+      '<a class="navbar-brand" href="#">B-Chain</a>'+
+      '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">'+
+        '<span class="navbar-toggler-icon">'+
+        '</span>'+
+      '</button>'+
+      '<div class="collapse navbar-collapse" id="navbarCollapse">'+
+        '<ul class="navbar-nav mr-auto">'+
+          '<li class="nav-item active">'+
+            '<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>'+
+          '</li>'+
+        '</ul>'+
+        '<form class="form-inline mt-2 mt-md-0">'+
+          '<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">'+
+          '<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>'+
+        '</form>'+
+      '</div>'+
+    '</nav>'+
+'<p>B-Chain transaction <strong></p>'+
+'<p>'+
+'<scrtipt>'+ JSON.stringify({transaction: req.body.price, data: Date(), index: hash}) +'</scrtipt>'+
+    //location.reload();
+'</p>'+
+'<hr>'+
+'<footer class="footer">'+
+
+  '<div class="footer-copyright text-center py-3">© 2018 Copyright:'+
+    '<a href="#"> B-Chain </a>'+
+  '</div>'+
+
+'</footer>'+
+'</body>'+
+'</html>', 'utf-8' ,function (err) {
   if (err) throw err;
-   // res.end(JSON.stringify(result));
-  /* res.end('<!DOCTYPE html>'+
-'<html>'+
-'    <head>'+
-'        <meta charset="utf-8" />'+
-'        <title>Pagina Node.js!</title>'+
-'    </head>'+ 
-'    <body>'+
-'       <p>Sono un paragrafo <strong>HTML</strong>!</p>'+
-'    </body>'+
-'</html>');*/
+  
   console.log('Saved!');
 
 }); 
@@ -204,7 +257,7 @@ fs.appendFile('costructor.html', JSON.stringify({transaction: req.body.price, da
     db.close();
   });
 }); 
-    });   });    });//////////////////////////
+    });   });    });////////////////  JSON.stringify({transaction: req.body.price, data: Date(), index: hash})
 res.redirect('/myBlock');
 });
 
