@@ -66,19 +66,23 @@ app.post('/login', function(req, res){  // <--- app.post start **** ************
 	
 	/*------------------------------------------------------------------------------------*/
 
-    var myMailer = nodemailer.createTransport({
-  service: 'yahoo',
+   nodemailer.createTestAccount(function(err, account){
+var myMailer = nodemailer.createTransport({
+  host: 'smtp.ethereal.email',
+  port: 587,
+  secure: false,
   auth: {
-    user: 'g.adonoo@yahoo.it',
-    pass: 'S*'
+    user: account.user,
+    pass: account.pass
   }
 });
 
 var mailOptions = {
-  from: 'g.adonoo@yahoo.it',
+  from: '"B-Chain:👻 " <foo@example.com>',
   to: email,
   subject: 'Sending Email using login app',
-  text: 'Are you tryng to enter the B-chain application?!'
+  text: 'Are you tryng to enter the B-chain application?!',
+  html: '<p>Sent by B-Chain application at </p>' + new Date()
 };
 
 myMailer.sendMail(mailOptions, function(error, info){
@@ -86,10 +90,12 @@ myMailer.sendMail(mailOptions, function(error, info){
     console.log(error);
   } else {
     console.log('Email sent: ' + info.response);
+    console.log(nodemailer.getTestMessageUrl(info));
 
   }
 });
 
+});
   /*-------------------------------------------------------------------------------------*/
 
   MongoClient.connect(url, function(err, db) {   //  <------ request infos saved in db via login! and put on inside the collection "customs"...
