@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
-mongoose.connect('mongodb://mongo1985:internazionale1985@ds245680.mlab.com:45680/database001');
+mongoose.connect('mongodb://mongo1985:inter*1985@ds245680.mlab.com:45680/database001');
 var Schema = mongoose.Schema;
 
 var myBlocks = new Schema({
